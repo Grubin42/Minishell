@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/04/19 14:50:49 by grubin           ###   ########.fr       */
+/*   Updated: 2022/04/20 15:19:47 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef struct s_data
     char    *str_path;
     char    **tab_getenv;
     char    **tab_rl;
-    int     count_sq;
-    int     count_dq;
 }   t_data;
+
+char *ft_prompt_quote(char *str);
+int ft_check_first_quote(char *str);
 
 #endif

@@ -55,79 +55,131 @@ int ft_access_path(t_data *data)
     return (0);
 }
 
-int ft_count_quote(t_data *data)
+int ft_count_quote(char *str)
 {
     int i;
+    int sq;
+    int dq;
 
     i = 0;
-    data->count_sq = 0;
-    data->count_dq = 0;
-    while (data->str_rl[i])
+    sq = 0;
+    dq = 0;
+    while (str[i])
     {
-        if (data->str_rl[i] == 39)
-            data->count_sq++;
-        if (data->str_rl[i] == 34)
-            data->count_dq++;
+        if (str[i] == 39 && ft_check_first_quote(str) == 1)
+            sq++;
+        else if (str[i] == 34 && ft_check_first_quote(str) == 2)
+            dq++;
         i++;
     }
+    if (sq % 2 == 1 || dq % 2 == 1)
+        return (1);
     return (0);
 }
 
-int ft_del_consec_quote(t_data *data)
+int ft_check_first_quote(char *str)
 {
     int i;
 
     i = 0;
-    while (data->str_rl[i])
+    while (str[i])
     {
-        if ((data->str_rl[i] == 39 && data->str_rl[i + 1] == 39)
-            || (data->str_rl[i] == 34 && data->str_rl[i + 1] == 34))
-        {
-            ft_memmove(&data->str_rl[i], &data->str_rl[i + 2], ft_strlen(data->str_rl) - i);
-            i = 0;
-        }
-        else
-            i++;
-    }
-    return(0);
-}
-
-int ft_check_first_quote(t_data *data)
-{
-    int i;
-
-    i = 0;
-    while (data->str_rl[i])
-    {
-        if (data->str_rl[i] == 39)
+        if (str[i] == 39)
             return(1);
-        else if (data->str_rl[i] == 34)
+        else if (str[i] == 34)
             return(2);
         i++;
     }
     return (0);
 }
 
-int ft_prompt_quote(t_data *data)
+char *ft_del_quote(char *str)// pas fini
+{
+    int i;
+    int j;
+    int len;
+
+    i = 0;
+    j = 0;
+    len = ft_strlen(str);
+    while (str[i])
+    {
+        if (str[i] == (char)39 || str[i] == (char)34)
+            ft_memmove(&str[i], &str[i + 1], len - i);
+        i++;
+    }
+    return(str);
+}
+
+char *ft_check_new_quote(char *new_str)
+{
+    char sq;
+    char dq;
+    int i;
+    int len;
+
+    sq = (char)39;
+    dq = (char)34;
+    i = 0;
+    len = ft_strlen(new_str);
+    while (new_str[i])
+    {
+        if (new_str[i] == sq)
+            i++;
+        else
+            ft_memmove(&new_str[i], &new_str[i + 1], len - i);
+    }
+    printf("new_str = %s\n", new_str);
+    return(new_str);
+}
+
+char *ft_check_new_dquote(char *new_str)
+{
+    char sq;
+    char dq;
+    int i;
+    int len;
+
+    sq = (char)39;
+    dq = (char)34;
+    i = 0;
+    len = ft_strlen(new_str);
+    while (new_str[i])
+    {
+        if (new_str[i] == dq)
+            i++;
+        else
+            ft_memmove(&new_str[i], &new_str[i + 1], len - i); 
+    }
+    return(new_str);
+}
+
+char *ft_prompt_quote(char *str)
 {
     char *new_str;
 
     new_str = malloc(2048 * sizeof(char));
-    ft_count_quote(data);
-    if (data->count_sq  % 2 == 1 && ft_check_first_quote(data) == 1)
-        new_str = readline("quote> ");//ajouter \n
-    else if (data->count_dq % 2 == 1 && ft_check_first_quote(data) == 2)
-        new_str = readline("dquote> ");
-    if (new_str[0] == 39 && new_str[1] != 39)
-        data->str_rl = ft_strjoin(data->str_rl, new_str);
-    else if (new_str[0] == 34 && new_str[1] != 34)
-        data->str_rl = ft_strjoin(data->str_rl, new_str);
-    else
+    if (ft_check_first_quote(str) == 1)
     {
-        ft_prompt_quote(data);
+        new_str = readline("quote> ");
+        new_str = ft_check_new_quote(new_str);
+        if (new_str[0] == (char)39)
+            str = ft_strjoin(str, &new_str[0]);
+        else
+            str = ft_prompt_quote(new_str);
     }
-    free(new_str);
-    return (0);
+    else if (ft_check_first_quote(str) == 2)
+    {
+        new_str = readline("dquote> ");
+        new_str = ft_check_new_dquote(new_str);
+        if (new_str[0] == (char)34)
+            str = ft_strjoin(str, &new_str[0]);     
+        else
+            str = ft_prompt_quote(new_str);
+    }
+    if (ft_count_quote(str) == 1)
+        str = ft_prompt_quote(str);
+    return (str);
 }
 
 int ft_check_quote(t_data *data)
@@ -135,10 +187,10 @@ int ft_check_quote(t_data *data)
     int i;
 
     i = 0;
-    ft_count_quote(data);
-    if (data->count_sq  % 2 == 1 || data->count_dq  % 2 == 1)
-        ft_prompt_quote(data);
-    ft_del_consec_quote(data);
+    ft_chunck_quote();//A FAIRE
+    if (ft_count_quote(data->str_rl) == 1)
+        data->str_rl = ft_prompt_quote(data->str_rl);
+    //data->str_rl = ft_del_quote(data->str_rl);
     printf("str_rl = %s\n", data->str_rl);
     return (0);
 }
@@ -154,11 +206,11 @@ int main(int argc, char **argv, char **envp)
         data.str_rl = readline("$ ");
         add_history(data.str_rl);
         ft_check_quote(&data);
-        data.tab_rl = ft_split(data.str_rl, ' ');
-        if(!data.tab_rl || !data.tab_rl[0])
-            continue; 
-        ft_access_path(&data);
-        ft_exec_cmd(&data, envp);   
+        //data.tab_rl = ft_split(data.str_rl, ' ');
+        //if(!data.tab_rl || !data.tab_rl[0])
+            //continue; 
+        //ft_access_path(&data);
+        //ft_exec_cmd(&data, envp);   
     }
   	(void)argc;//tester que argc soit = 1
 	(void)argv;
