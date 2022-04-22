@@ -13,7 +13,7 @@
 NAME = minishell
 
 CC = gcc -I $HOME/.brew/Cellar/readline/8.1.2/include
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 AR = ar -rc
 
@@ -26,6 +26,11 @@ LIBFT = libft.a
 
 
 SRCS = 	main.c \
+		access_path.c \
+		utils_quote.c \
+		prompt_quote.c \
+		chunck.c \
+		init_malloc.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
