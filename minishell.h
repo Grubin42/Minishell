@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/04/20 15:19:47 by grubin           ###   ########.fr       */
+/*   Updated: 2022/04/22 15:26:21 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 typedef struct s_data
 {
-    int     i_tab;
+    int     i_chunk;
+    char    *str_chunk;
     char    *str_getenv;
     char    *str_rl;
     char    *str_path;
@@ -44,5 +45,6 @@ char *ft_prompt_quote(char *str);
 int ft_chunck_quote(t_data *data);
 int ft_init_struct(t_data *data);
 void ft_malloc_chunck(t_data *data);
+int ft_create_chunck(t_data *data);
 
 #endif

@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **envp)
     {
         data.str_rl = readline("$ ");
         add_history(data.str_rl);
-        ft_chunck_quote(&data);
+        ft_create_chunck(&data);
         /*data.tab_rl = ft_split(data.str_rl, ' ');
         if(!data.tab_rl || !data.tab_rl[0])
             continue; 
