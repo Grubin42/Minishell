@@ -4,76 +4,85 @@ int ft_if_sq(t_data *data)
 {
     int i;
     int count;
-    char *back_n;
-    
+
     count = 0;
-    back_n = "\n";
     i = 0; 
     while (data->str_rl[i])
     {
-        if (ft_count_quote(data->str_rl) == 1)
-        {
-            data->str_chunk[data->i_chunk] = data->str_rl[i];
-            data->i_chunk++;
-            i++;  
-        }
+        if (ft_count_quote(data->str_rl) % 2 == 1 && ft_count_quote(data->str_rl) == 1)
+            i = ft_str_chunck(data, i);
         else
         {
             count++;
-            data->str_chunk[data->i_chunk] = data->str_rl[i];
-            data->i_chunk++;
-            i++;
-            if (count > 2)
+            i = ft_str_chunck(data, i);
+            if (count >= 2)
                 break;
-            while (data->str_rl[i] != (char)39 && data->str_rl[i])
-            {
-                data->str_chunk[data->i_chunk] = data->str_rl[i];
-                data->i_chunk++;
-                i++;
-            }
+            while (data->str_rl[i] != (char)39)
+                i = ft_str_chunck(data, i);
             count++;
         }   
     }
-    ft_memmove(data->str_rl, data->str_rl + i , ft_strlen(data->str_rl));
-    data->str_chunk = ft_strjoin(data->str_chunk, back_n);
-    data->i_chunk++;
-    printf("str_chunk = %s\n", data->str_chunk);
+    ft_create_chunck(data, i);;
     return (0);
 }
 
-int ft_create_chunck(t_data *data)
+int ft_if_dq(t_data *data)
+{
+    int i;
+    int count;
+
+    count = 0;
+    i = 0; 
+    while (data->str_rl[i])
+    {
+        if (ft_count_quote(data->str_rl) % 2 == 1 && ft_count_quote(data->str_rl) == 1)
+            i = ft_str_chunck(data, i);
+        else
+        {
+            count++;
+            i = ft_str_chunck(data, i);
+            if (count >= 2)
+                break;
+            while (data->str_rl[i] != (char)34)
+                i = ft_str_chunck(data, i);
+            count++;
+        }   
+    }
+    ft_create_chunck(data, i);
+    return (0);
+}
+
+int ft_without_q(t_data *data)
+{
+    int i;
+
+    i = 0; 
+    while (data->str_rl[i])
+    {
+        if (data->str_rl[i] == (char)34 || data->str_rl[i] == (char)39)
+            break ;
+        else
+            i = ft_str_chunck(data, i);
+    }
+    ft_create_chunck(data, i);
+    return (0);
+}
+
+int ft_create_str_chunck(t_data *data)
 {   
     int i = 0;
 
-    data->i_chunk = 0;
     while (data->str_rl[i])
     {
-        printf("str_rl = %s\n", data->str_rl);
         if (data->str_rl[0] == (char)39)
-        {
             ft_if_sq(data);
-            i = 0;
-                //si count_quote = 1  enregistre tout
-                //sinon enregistre jusqu a la suivante
-                //il faut mememove
-        }
-            /*else if (data->str_rl[i] == (char)34)
-            {
-                i = 0;
-                //faire fonction
-                //si count_quote = 1  enregistre tout
-                //sinon enregistre jusqu a la suivante
-                //il faut mememove
-            }
-            else if (data->str_rl[i])
-            {
-                i = 0;
-                //faire fonction
-                //il faut mememove
-            }*/
+        else if (data->str_rl[i] == (char)34)
+            ft_if_dq(data);
+        else if (data->str_rl[i])
+            ft_without_q(data);
         else
             i++;
+        i = 0;
     }
-    free(data->str_chunk);
     return (0);
 }
