@@ -1,9 +1,18 @@
 #include "minishell.h"
+void ft_print_tab(char **tab)
+{
+    int i = 0;
+
+    while (tab[i])
+    {
+        printf("tab = %s\n", tab[i]);
+        i++;
+    }
+}
 
 int main(int argc, char **argv, char **envp) 
 {
     t_data data;
-    //int i = 0;
     if (argc == 1)
     {
         while (1)
@@ -15,7 +24,7 @@ int main(int argc, char **argv, char **envp)
             data.tab_chunck = ft_split(data.str_chunk, '\n');
             if(!data.tab_chunck || !data.tab_chunck[0])
                 continue;
-            
+            ft_print_tab(data.tab_chunck);
             ft_access_path(&data);
             ft_exec_cmd(&data, envp);
             free(data.str_rl);
