@@ -16,7 +16,7 @@ int ft_exec_cmd(t_data *data, char **envp)
     }
     else
     {
-        if(execve(data->str_path, &data->tab_chunck[0], envp) == - 1)
+        if(execve(data->str_path, &data->tab_args[0].args[0], envp) == - 1)
             perror("shell");
         exit(EXIT_FAILURE);
     }
@@ -29,10 +29,10 @@ int ft_access_path(t_data *data)
     int len;
     char *final_path;
 
-    len = ft_strlen(data->tab_chunck[0]);
+    len = ft_strlen(data->tab_args[0].args[0]);
     final_path = malloc(len * sizeof(char) + 1);
     final_path = ft_strdup("");
-    final_path = ft_join("/", data->tab_chunck[0]);
+    final_path = ft_join("/", data->tab_args[0].args[0]);
     i = 0;
     while (data->tab_getenv[i])
     {
@@ -41,6 +41,7 @@ int ft_access_path(t_data *data)
             return (1);
         i++;
     }
+    printf("str_path = %s\n", data->str_path);
     free(final_path);
     return (0);
 }

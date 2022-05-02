@@ -6,7 +6,7 @@
 #    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/04/28 10:47:19 by grubin           ###   ########.fr        #
+#    Updated: 2022/04/29 15:01:27 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_DIR = ./src \
 OBJS_DIR = ./objs
 INC_DIR = .
 LIBFT_DIR = ./libft
-LIBFT = libft.a
+LIBFT = $(LIBFT_DIR)/libft.a
 
 
 SRCS = 	main.c \
@@ -45,9 +45,11 @@ RM = rm -f
 all : $(NAME)
 
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -lreadline -o $@ $^ -L $(LIBFT_DIR) -lft
+
+$(LIBFT) :
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -lreadline -o $@ $^ -L$(LIBFT_DIR) -lft
 
 $(OBJS_DIR) :
 	@mkdir -p $(OBJS_DIR)
