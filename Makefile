@@ -6,14 +6,14 @@
 #    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/04/29 15:01:27 by grubin           ###   ########.fr        #
+#    Updated: 2022/05/04 16:01:45 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc -I $HOME/.brew/Cellar/readline/8.1.2/include
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 AR = ar -rc
 
@@ -34,7 +34,7 @@ SRCS = 	main.c \
 		utils_chunck.c \
 		chunck_bis.c \
 		init_cmd.c \
-
+		#check_tab_args.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 

@@ -6,22 +6,11 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 11:37:00 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/02 11:37:13 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/03 13:41:08 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int ft_if_chevronstr(t_data *data, int i)
-{
-    while (data->str_rl[i] != ' ')
-    {
-        if (data->str_rl[i] == '\0' || data->str_rl[i] == '|')
-            break ;
-        i = ft_str_chunck(data, i);
-    }
-    return (i);
-}
 
 int ft_if_spacestr(t_data *data, int i)
 {
@@ -35,21 +24,13 @@ int ft_if_chevron(t_data *data)
     int i;
 
     i = 0;
+    i = ft_str_chunck(data, i);
     while (data->str_rl[i])
     {
-        i = ft_str_chunck(data, i);
-        if (data->str_rl[i] == '<' || data->str_rl[i] == '>')
-            i = ft_str_chunck(data, i);
-        if (data->str_rl[i] == ' ')
-            i = ft_if_spacestr(data, i);
-        if (data->str_rl[i])
-        {
-            i = ft_if_chevronstr(data, i);
-            if (data->str_rl[i] == ' ' || data->str_rl[i] == '\0')
-                break ;
-        }
-        if (data->str_rl[i] == '|')
+        if (data->str_rl[i] != data->str_rl[i - 1])
             break ;
+        else
+            i = ft_str_chunck(data, i);
     }
     ft_create_chunck(data, i);
     return (0);

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:16:04 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/02 16:36:32 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/03 13:05:04 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ int ft_if_charact(t_data *data)
     i = 0; 
     while (data->str_rl[i])
     {
-        if (data->str_rl[i] == '"' || data->str_rl[i] == '\''
-            || data->str_rl[i] == '|' || data->str_rl[i] == '<'
+        if (data->str_rl[i] == '|' || data->str_rl[i] == '<'
             || data->str_rl[i] == '>' || data->str_rl[i] == ' ')
             break ;
         else
