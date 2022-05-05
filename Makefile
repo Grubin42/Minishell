@@ -6,7 +6,7 @@
 #    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/05/04 16:01:45 by grubin           ###   ########.fr        #
+#    Updated: 2022/05/05 10:18:06 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = 	main.c \
 		utils_chunck.c \
 		chunck_bis.c \
 		init_cmd.c \
+		chunk_quote.c \
 		#check_tab_args.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

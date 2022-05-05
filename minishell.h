@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/04/28 14:41:35 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/05 10:15:15 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ int ft_del_chunck_full_space(t_data *data);
 int ft_if_space(t_data *data);
 int ft_if_chevron(t_data *data);
 int ft_init_cmd(t_data *data);
+int ft_if_pipe(t_data *data);
+int ft_if_sq(t_data *data);
+int ft_if_dq(t_data *data);
 
 #endif

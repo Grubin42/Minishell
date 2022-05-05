@@ -59,7 +59,7 @@ int main(int argc, char **argv, char **envp)
         while (1)
         {
             ft_init_struct(&data);
-            data.str_rl = readline("$ ");
+            data.str_rl = readline("$ ");//free
             if (!data.str_rl)
                 break ;
             add_history(data.str_rl);
