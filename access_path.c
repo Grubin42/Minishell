@@ -13,7 +13,7 @@ int ft_exec_cmd(t_data *data, char **envp)
         waitpid(pid, &status, 0);
     else
     {
-        if(execve(data->str_path, &data->tab_args[0].args[0], envp) == - 1)
+        if(execve(data->str_path, &data->tab_cmd[0].args[0], envp) == - 1)
             perror("shell");
         exit(EXIT_FAILURE);
     }
@@ -27,7 +27,7 @@ int ft_access_path(t_data *data)
     int i;
     char *final_path;
 
-    final_path = ft_join("/", data->tab_args[0].args[0]);
+    final_path = ft_join("/", data->tab_cmd[0].args[0]);
     i = 0;
     while (data->tab_getenv[i])
     {

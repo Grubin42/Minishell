@@ -6,16 +6,21 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/03 14:39:06 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/05 13:55:47 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
 int ft_check_tab_args(t_data *data)
 {
-    // lire la cmd 
+    // lire la cmd
+    //int i_cmd;
+    //int i_arg;
+    
+    ft_dollar(data->tab_cmd); 
+  
+    
         // si cmd[0] pas valide -> error
         // si dans cmd[] il y a $ remplacer ce qui suis le $ par sa valeur
         // si dans cmd < ou << ou > ou >> 
@@ -28,5 +33,5 @@ int ft_check_tab_args(t_data *data)
             // sinon utiliser PATH
         // si cmd > 1 -> pipe
         // sinon execute cmd
-        
+    return (0);
 }

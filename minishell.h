@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/05 10:15:15 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/17 10:35:22 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct s_data
     char    *str_getenv;
     char    *str_rl;
     char    *str_path;
+    char    **envp;
     char    **tab_getenv;
     char    **tab_chunck;
-    t_cmd   *tab_args;
+    t_cmd   *tab_cmd;
 }   t_data;
 
 void ft_print_tab(char **tab);
@@ -66,5 +67,7 @@ int ft_init_cmd(t_data *data);
 int ft_if_pipe(t_data *data);
 int ft_if_sq(t_data *data);
 int ft_if_dq(t_data *data);
+int ft_check_tab_args(t_data *data);
+int ft_dollar(t_cmd *tab);
 
 #endif
