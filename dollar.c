@@ -6,140 +6,132 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/17 17:13:02 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/20 15:55:23 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_include_env(char **str, char *result, int size_env)
+char *ft_get_env(t_env *env)
 {
     int i;
-    int i_tok;
-    int i_res;
-    char *token_tmp;
-    
+    int i_env;
+
     i = 0;
-    i_res = 0;
-    i_tok = 0;
-    token_tmp = ft_calloc((ft_strlen(*str) + ft_strlen(result)), sizeof(char));// free
-    //printf("token AVANT = %s\n", token_tmp);
-   // printf("str AVANT = %s\nstr size = %zu\n",*str, ft_strlen(*str));
-    while ((*str)[i])
+    i_env = 0;
+    while (env->str_tmp[i])
     {
-        printf("result = %s\n", result);
-        if ((*str)[i] == '$')
+        if (env->str_tmp[i] == '$')
         {
-            while (result[i_res])
+            i++;
+            while (ft_isalpha(env->str_tmp[i]) == 1)
             {
-                token_tmp[i_tok] = result[i_res];
-                i_tok++;
-                i_res++;
+                env->env_tmp[i_env] = env->str_tmp[i];
+                i++;
+                i_env++;
             }
-            i = i + (size_env + 1);
-            i_res = i;
+            break;
         }
-        token_tmp[i_tok] = (*str)[i];
-        i++;
-        i_tok++;
+        i++;      
     }
-    *str = token_tmp;// str pas free
-    printf("str APRES = %s\n", *str);
-    printf("i = %d\n", i);
-   // printf("i_res = %d\n", i_res);
-    return (i_res);// return une valeur i;
+    env->size_env = ft_strlen(env->env_tmp);
+    env->result = getenv(env->env_tmp);
+    free(env->env_tmp);
+    return (env->result);
 }
 
-int ft_check_env(char **str, int i)
+int ft_init_env(t_env *env)
 {
-    int     i_env;
-    char    *env_tmp;
-    char    *result;
-    //printf("i AVANT = %d\n", i);
-    i_env = 0;
-    env_tmp = ft_calloc(ft_strlen(*str), sizeof(char));//free
-    i++;
-    while ((*str)[i])
+    if (env->tmp != NULL)
+        free(env->tmp);
+    env->tmp = ft_calloc(2048, sizeof(char));// free
+    env->env_tmp = ft_calloc(ft_strlen(env->str_tmp), sizeof(char));
+    env->i_res = 0;
+    env->i_str = 0;
+    env->i_tmp = 0;
+    env->count = 0;
+    return (0);
+}
+
+int ft_change_env(t_env *env, int i)
+{
+    ft_init_env(env);
+    env->result = ft_get_env(env);
+    i = 0;
+    while (env->str_tmp[i])
     {
-        if ((*str)[i] == '"' || (*str)[i] == ' ' || (*str)[i] == '$')
-            break ;
-        env_tmp[i_env] = (*str)[i];
+        if (env->str_tmp[i] == '$' && env->count < 1)
+        {
+            env->count++;
+            while (env->result[env->i_res])
+            {
+                env->tmp[env->i_tmp] = env->result[env->i_res];
+                env->i_tmp++;
+                env->i_res++;
+            }
+            i = i + (env->size_env + 1);
+        }
+        env->tmp[env->i_tmp] = env->str_tmp[i];
+        env->i_tmp++;
         i++;
-        i_env++;
     }
-    //printf("i PENDANT = %d\n", i);
-    result = getenv(env_tmp);//pas free
-    i = ft_include_env(str, result, ft_strlen(env_tmp));
-    //printf("i APRES = %d\n", i);
-    free(env_tmp);
+    env->str_tmp = ft_realloc(env->str_tmp, 2048);
+    ft_strlcpy(env->str_tmp, env->tmp, ft_strlen(env->tmp) + 1);
     return (i);
 }
 
-int ft_check_str_with_dollar(char **str)
+int ft_include_env(t_env *env)
 {
     int i;
-    
+
     i = 0;
-    while ((*str)[i])
+    while (env->str_tmp[i])
     {
-        if ((*str)[i] == '"' && (*str)[i + 1] != '\0')
-        {    
+        if (env->str_tmp[i] == '"' && env->str_tmp[i + 1] != '\0')
+        {
             i++;
-            while ((*str)[i] != '"')
+            while (env->str_tmp[i])
             {
-                if ((*str)[i] == '$' && (*str)[i + 1] != ' ')
-                {
-                i = ft_check_env(str, i);
-  
-                }
+                if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] != ' ')// sur le $
+                    i = ft_change_env(env, i);
                 else
                     i++;
-            } 
+            }               
         }
-        else if ((*str)[i] == '$')
-        {
-            
-        }
+        else if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] == '\'')
+            ft_memmove(&env->str_tmp[i], &env->str_tmp[i + 1], ft_strlen(env->str_tmp));
+        else if (env->str_tmp[i] == '$')
+            i = ft_change_env(env, i);
         else
+            i++;
+    }
+    return (0);
+}
+
+int ft_dollar(char **tab)
+{
+    t_env env;
+    int i;
+    
+    env.env_tmp = NULL;
+    env.result = NULL;
+    env.str_tmp = NULL;
+    env.tmp = NULL;
+    i = 0;
+    while (tab[i])
+    {
+        if (ft_strchr(tab[i], '$'))
         {
+            env.str_tmp = ft_strdup(tab[i]);//free
+            ft_include_env(&env);
+            tab[i] = ft_realloc(tab[i], 2048);
+            ft_strlcpy(tab[i], env.str_tmp, ft_strlen(env.str_tmp) + 1);
+            free(env.str_tmp);
             i++;
         }
+        else
+            i++;
     }
-    return (0);
-}
-
-int ft_check_dollar(char **str)
-{
-    int i;
-
-    i = 0;
-    while ((*str)[i])
-    {
-        if ((*str)[i] == '$')
-        {
-            ft_check_str_with_dollar(str);
-            break ;
-        }
-        i++;
-    }
-    return (0);
-}
-
-int ft_dollar(t_cmd *tab)
-{
-    int i_cmd;
-    int i_arg;
-    
-    i_cmd = 0;
-    while (tab[i_cmd].args)
-    {
-        i_arg = 0;
-        while (tab[i_cmd].args[i_arg])
-        {
-            ft_check_dollar(&tab[i_cmd].args[i_arg]);
-            i_arg++;
-        }
-        i_cmd++;
-    }
+    free(env.tmp);
     return (0);
 }

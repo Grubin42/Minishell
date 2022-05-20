@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/17 10:35:22 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/20 15:13:20 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 #include "libft/libft.h"
 #include <sys/types.h>
 #include <signal.h>
+
+typedef struct  s_env
+{
+    int     size_env;
+    int     count;
+    int     i_res;
+    int     i_str;
+    int     i_tmp;
+    char     *env_tmp;
+    char     *str_tmp;
+    char     *tmp;
+    char     *result;
+} t_env;
 
 typedef struct  s_cmd
 {
@@ -68,6 +81,6 @@ int ft_if_pipe(t_data *data);
 int ft_if_sq(t_data *data);
 int ft_if_dq(t_data *data);
 int ft_check_tab_args(t_data *data);
-int ft_dollar(t_cmd *tab);
+int ft_dollar(char **tab);
 
 #endif
