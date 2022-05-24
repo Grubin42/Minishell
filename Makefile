@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/05/20 15:55:49 by grubin           ###   ########.fr        #
+#    Updated: 2022/05/23 13:04:58 by jschreye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc -I $HOME/.brew/Cellar/readline/8.1.2/include
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 AR = ar -rc
 
@@ -48,7 +48,7 @@ all : $(NAME)
 
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -lreadline -o $@ $^ -L $(LIBFT_DIR) -lft
+	$(CC) $(CFLAGS)  -o $@ $^ -L $(LIBFT_DIR) -lft -lreadline
 
 $(LIBFT) :
 	@$(MAKE) -C $(LIBFT_DIR)

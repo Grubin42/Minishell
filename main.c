@@ -69,15 +69,10 @@ int main(int argc, char **argv, char **envp)
             data.tab_chunck = ft_split(data.str_chunk, '\n');//free
             ft_dollar(data.tab_chunck);
             ft_init_cmd(&data);
-            for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
-                for(int i_arg = 0; data.tab_cmd[i_cmd].args[i_arg]; i_arg++)
-                    printf("str_tab_args[%d][%d] = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
-                    /*
             ft_check_tab_args(&data);
             for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
                 for(int i_arg = 0; data.tab_cmd[i_cmd].args[i_arg]; i_arg++)
                     printf("str_tab_args[%d][%d] AVANT = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
-                    */
             //ft_access_path(&data);
             //ft_exec_cmd(&data, envp);
             ft_free(&data);
@@ -85,6 +80,6 @@ int main(int argc, char **argv, char **envp)
     }
     else
         printf("Error argument\n");
-	(void)argv;
+    (void)argv;
     return 0; 
 }

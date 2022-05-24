@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/20 15:55:23 by grubin           ###   ########.fr       */
+/*   Updated: 2022/05/24 12:57:46 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int ft_change_env(t_env *env, int i)
 {
     ft_init_env(env);
     env->result = ft_get_env(env);
-    i = 0;
-    while (env->str_tmp[i])
+    if ((env->result) == NULL)
+        (env->result) = ft_strdup("");
+    i = - 1;
+    while (env->str_tmp[++i])
     {
         if (env->str_tmp[i] == '$' && env->count < 1)
         {
@@ -73,7 +75,6 @@ int ft_change_env(t_env *env, int i)
         }
         env->tmp[env->i_tmp] = env->str_tmp[i];
         env->i_tmp++;
-        i++;
     }
     env->str_tmp = ft_realloc(env->str_tmp, 2048);
     ft_strlcpy(env->str_tmp, env->tmp, ft_strlen(env->tmp) + 1);
@@ -87,12 +88,18 @@ int ft_include_env(t_env *env)
     i = 0;
     while (env->str_tmp[i])
     {
+        if (env->str_tmp[i] == '\'')
+        {
+            i++;
+            while(env->str_tmp[i] != '\'')
+                i++;
+        }
         if (env->str_tmp[i] == '"' && env->str_tmp[i + 1] != '\0')
         {
             i++;
             while (env->str_tmp[i])
             {
-                if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] != ' ')// sur le $
+                if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] != ' ')// factoriser
                     i = ft_change_env(env, i);
                 else
                     i++;
