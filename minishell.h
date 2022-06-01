@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/24 13:07:52 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:49:15 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ typedef struct  s_env
 
 typedef struct  s_cmd
 {
-    char *path;
-    char **args;
-    int output_fd;
-    int input_fd;
+    int     input_fd;
+    int     output_fd;
+    char    *path;
+    char    **args;
+    pid_t   pid;
 } t_cmd;
 
 typedef struct s_data
 {
+    int     nbr_cmd;
     int     i_chunk;
-    int     size_cmd;
     char    *str_chunk;
     char    *str_getenv;
     char    *str_rl;
@@ -62,8 +63,8 @@ void ft_print_tab(char **tab);
 
 //char *ft_prompt_quote(char *str);
 int ft_check_first_quote(char *str);
-int ft_exec_cmd(t_data *data);
-int ft_access_path(t_data *data);
+int ft_exec_cmd(t_data *data, int i_cmd);
+int ft_access_path(t_data *data, int i_cmd, int i_arg);
 int ft_del_consec_quote(t_data *data);
 int ft_count_quote(char *str);
 //char *ft_check_new_dquote(char *new_str);

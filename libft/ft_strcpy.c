@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_tab_args.c                                   :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/24 15:09:31 by grubin           ###   ########.fr       */
+/*   Created: 2022/05/31 14:14:58 by grubin            #+#    #+#             */
+/*   Updated: 2022/05/31 14:15:54 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-/*
-int ft_check_tab_args(t_data *data)
-{
+#include "libft.h"
 
-    return (0);
-}*/
+char    *ft_strcpy(char *dst, const char *src)
+{
+    int        i;
+
+    i = 0;
+    while (src[i])
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return (dst);
+}

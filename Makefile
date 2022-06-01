@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+         #
+#    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/05/23 13:04:58 by jschreye         ###   ########.fr        #
+#    Updated: 2022/05/23 13:21:36 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ all : $(NAME)
 
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS)  -o $@ $^ -L $(LIBFT_DIR) -lft -lreadline
+	$(CC) $(CFLAGS) -o $@ $^ -L $(LIBFT_DIR) -lft -lreadline
 
 $(LIBFT) :
 	@$(MAKE) -C $(LIBFT_DIR)

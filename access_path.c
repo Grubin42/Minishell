@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int ft_exec_cmd(t_data *data)
+int ft_exec_cmd(t_data *data, int i_cmd)
 {
     pid_t   pid;
     int     status;
@@ -13,7 +13,7 @@ int ft_exec_cmd(t_data *data)
         waitpid(pid, &status, 0);
     else
     {
-        if(execve(data->str_path, &data->tab_cmd[0].args[0], data->envp) == - 1)
+        if(execve(data->str_path, data->tab_cmd[i_cmd].args, data->envp) == - 1)
             perror("shell");
         exit(EXIT_FAILURE);
     }
@@ -22,12 +22,12 @@ int ft_exec_cmd(t_data *data)
     return (0);
 }
 
-int ft_access_path(t_data *data)
+int ft_access_path(t_data *data, int i_cmd, int  i_arg)
 {
     int i;
     char *final_path;
 
-    final_path = ft_join("/", data->tab_cmd[0].args[0]);
+    final_path = ft_join("/", *data->tab_cmd[i_cmd].args);
     i = 0;
     while (data->tab_getenv[i])
     {
@@ -38,7 +38,12 @@ int ft_access_path(t_data *data)
         free(data->str_path);
         data->str_path = NULL;
     }
+    if (data->str_path && i_arg < 1)
+    {
+        data->tab_cmd[i_cmd].path = ft_calloc(ft_strlen(data->str_path), sizeof(char));// free
+        data->tab_cmd[i_cmd].path = ft_strcpy(data->tab_cmd[i_cmd].path, data->str_path);
+    }
     free(final_path);
-    ft_exec_cmd(data);
+    ft_exec_cmd(data, i_cmd);
     return (0);
 }
