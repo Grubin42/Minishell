@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/25 16:15:58 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:40:16 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,11 @@ int ft_include_env(t_env *env)
     i = 0;
     while (env->str_tmp[i])
     {
-        if (env->str_tmp[i] == '\'')
-        {
-            i++;
-            while (env->str_tmp[i] != '\'')
-                i++;           
-        }
+        i = ft_check_quote(env, i);
         if (env->str_tmp[i] == '"' && env->str_tmp[i + 1] != '\0')
         {
             i++;
-            while (env->str_tmp[i])
-            {
-                if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] != ' ')// sur le $
-                    i = ft_change_env(env, i);
-                else
-                    i++;
-            }               
+            i = ft_check_dollar(env, i);
         }
         else if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] == '\'')
             ft_memmove(&env->str_tmp[i], &env->str_tmp[i + 1], ft_strlen(env->str_tmp));

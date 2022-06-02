@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 10:47:29 by grubin            #+#    #+#             */
-/*   Updated: 2022/05/31 14:52:34 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/02 14:32:12 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void ft_init_tab_args(t_data *data, int count)
         else
         {
             data->tab_cmd[i_cmd].args[i_arg] = data->tab_chunck[i_chunk];
-            ft_access_path(data, i_cmd, i_arg);
             i_arg++;
         }
     }

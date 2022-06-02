@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/05/23 13:21:36 by grubin           ###   ########.fr        #
+#    Updated: 2022/06/02 17:10:24 by jschreye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,18 +26,20 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 
 SRCS = 	main.c \
-		access_path.c \
 		utils_quote.c \
 		prompt_quote.c \
 		chunck.c \
-		init_malloc.c \
+		init_data.c \
 		utils_chunck.c \
 		chunck_bis.c \
 		init_cmd.c \
 		chunk_quote.c \
-		check_tab_args.c \
+		exec_cmd.c \
 		dollar.c \
-
+		builtins.c \
+		execve.c \
+		dollar_utils.c \
+		
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 vpath %.c $(SRCS_DIR)
