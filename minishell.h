@@ -6,7 +6,7 @@
 /*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/02 15:38:40 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:57:50 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,10 @@ int ft_check_dollar(t_env *env, int i);
 int ft_check_quote(t_env *env, int i);
 int ft_change_env(t_env *env, int i);
 int ft_execve(t_data *data, int i_cmd);
+int ft_env(t_data *data);
+void ft_pwd(void);
+int ft_echo(t_data *data , int i_cmd);
+void ft_exit(void);
+int ft_init_env(t_env *env);
 
 #endif

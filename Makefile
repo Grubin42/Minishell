@@ -6,14 +6,14 @@
 #    By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/06/02 17:10:24 by jschreye         ###   ########.fr        #
+#    Updated: 2022/06/03 14:21:39 by jschreye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc -I $HOME/.brew/Cellar/readline/8.1.2/include
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 AR = ar -rc
 
@@ -36,9 +36,16 @@ SRCS = 	main.c \
 		chunk_quote.c \
 		exec_cmd.c \
 		dollar.c \
-		builtins.c \
+		check_builtins.c \
 		execve.c \
 		dollar_utils.c \
+		builtin_cd.c \
+		builtin_env.c \
+		builtin_echo.c \
+		builtin_unset.c \
+		builtin_pwd.c \
+		builtin_exit.c \
+		builtin_export.c \
 		
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
