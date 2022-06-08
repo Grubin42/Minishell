@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/03 13:57:50 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:35:50 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
+
+typedef struct  s_cd
+{
+    char *pwd;
+    char *oldpwd;
+    char *path;
+} t_cd;
 
 typedef struct  s_env
 {
@@ -99,5 +106,6 @@ void ft_pwd(void);
 int ft_echo(t_data *data , int i_cmd);
 void ft_exit(void);
 int ft_init_env(t_env *env);
+int ft_cd(t_data *data, int i_cmd);
 
 #endif

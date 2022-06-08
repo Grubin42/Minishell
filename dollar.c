@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/03 14:15:55 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/07 08:50:14 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int ft_change_env(t_env *env, int i)
                 env->i_tmp++;
                 env->i_res++;
             }
-            printf("%s\n", env->tmp);
             i = i + (env->size_env + 1);
         }
         env->tmp[env->i_tmp] = env->str_tmp[i];

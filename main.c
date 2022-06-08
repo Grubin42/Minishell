@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/03 13:41:23 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:00:58 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ int main(int argc, char **argv, char **envp)
             ft_init_cmd(&data);
             ft_exec_cmds(&data);
             ft_check_cat(&data);
-            //for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
-              //  for(int i_arg = 0; data.tab_cmd[i_cmd].args[i_arg]; i_arg++)
-                //    printf("str_tab_args[%d][%d] = %s\nPATH = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg], data.tab_cmd[i_cmd].path);
+            for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
+                for(int i_arg = 0; data.tab_cmd[i_cmd].args[i_arg]; i_arg++)
+                    printf("str_tab_args[%d][%d] = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
             ft_free(&data);
         }
     }
