@@ -6,13 +6,13 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/08 11:27:27 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/09 11:08:01 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_exec_cmds(t_data *data)
+int ft_pipe(t_data *data)
 {
     int i;
     int j;
@@ -43,7 +43,7 @@ int ft_exec_cmds(t_data *data)
                 j++;
             }
             j = 0;
-            ft_check_builtins(data, i);
+            ft_builtins_with_pipe(data, i);
         }
         i++;     
     }
@@ -55,5 +55,14 @@ int ft_exec_cmds(t_data *data)
     }
     j = 0;
     waitpid(pid_child, NULL, 0);
+    return (0);
+}
+
+int ft_exec_cmds(t_data *data)
+{
+    if (data->nbr_cmd == 1)
+        ft_builtins_without_pipe(data);
+    else
+        ft_pipe(data);
     return (0);
 }

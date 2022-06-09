@@ -6,19 +6,21 @@
 #    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/06/08 11:10:19 by grubin           ###   ########.fr        #
+#    Updated: 2022/06/09 11:12:51 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc -I $HOME/.brew/Cellar/readline/8.1.2/include
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CC = gcc
+CFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3
+CFLAGS += -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib
+CFLAGS += -I ./libft/libft.h -lft -L ./libft
+CFLAGS += -o minishell
 
 AR = ar -rc
 
-SRCS_DIR = ./src \
-
+SRCS_DIR = ./src
 OBJS_DIR = ./objs
 INC_DIR = .
 LIBFT_DIR = ./libft
@@ -46,8 +48,9 @@ SRCS = 	main.c \
 		builtin_pwd.c \
 		builtin_exit.c \
 		builtin_export.c \
+		signal.c \
 		
-OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
+#OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 vpath %.c $(SRCS_DIR)
 
@@ -56,17 +59,19 @@ RM = rm -f
 all : $(NAME)
 
 
-$(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ -L $(LIBFT_DIR) -lft -lreadline
-
+$(NAME) : $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCS)
 $(LIBFT) :
 	@$(MAKE) -C $(LIBFT_DIR)
 
-$(OBJS_DIR) :
-	@mkdir -p $(OBJS_DIR)
+#$(OBJS_DIR) :
+#	@mkdir -p $(OBJS_DIR)
 
-$(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -o $@ -I $(INC_DIR) -I$(LIBFT_DIR) -c $^
+#$(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
+#	@$(CC) $(CFLAGS) -o $@ -I $(INC_DIR) -I$(LIBFT_DIR) -c $^
+
+debug: $(LIBFT)
+    @gcc $(CFLAGS) -fsanitize=address -g3 $(SRCS)
 
 clean :
 	@$(MAKE) -C $(LIBFT_DIR) fclean

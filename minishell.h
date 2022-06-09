@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/06 16:35:50 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/09 11:07:15 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <termios.h>
 
 typedef struct  s_cd
 {
@@ -93,13 +94,14 @@ int ft_init_cmd(t_data *data);
 int ft_if_pipe(t_data *data);
 int ft_if_sq(t_data *data);
 int ft_if_dq(t_data *data);
-int ft_exec_cmds(t_data *data);
+int ft_pipe(t_data *data);
 int ft_dollar(char **tab);
 int ft_check_builtins(t_data *data, int i);
 int ft_cmds_with_pipe(t_data *data);
 int ft_check_dollar(t_env *env, int i);
 int ft_check_quote(t_env *env, int i);
 int ft_change_env(t_env *env, int i);
+int ft_exec_cmds(t_data *data);
 int ft_execve(t_data *data, int i_cmd);
 int ft_env(t_data *data);
 void ft_pwd(void);
@@ -107,5 +109,7 @@ int ft_echo(t_data *data , int i_cmd);
 void ft_exit(void);
 int ft_init_env(t_env *env);
 int ft_cd(t_data *data, int i_cmd);
-
+void init_signals(struct termios *sig);
+int ft_builtins_with_pipe(t_data *data, int i);
+int ft_builtins_without_pipe(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/07 14:00:58 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:31:08 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,32 @@ int ft_check_cat(t_data *data)
     return (0);
 }
 
+int ft_exit_prog(t_data *data)
+{
+    int i_cmd;
+
+    i_cmd = 0;
+    if (!data->tab_cmd[0].args[0])
+        return (0);
+    while(i_cmd < data->nbr_cmd)
+    {
+        if (ft_strncmp(data->tab_cmd[0].args[0], "exit\0", 5) == 0)
+           exit (0); 
+        else if (ft_strncmp(data->tab_cmd[data->nbr_cmd - 1].args[0], "exit\0", 5) == 0)
+            exit(0);
+        else
+            i_cmd++;
+    }
+    return (0);
+}
+
 int main(int argc, char **argv, char **envp) 
 {
     t_data data;
-
+    struct termios sig;
+    
     data.envp = envp;
+    init_signals(&sig);
     if (argc == 1)
     {
         while (1)
@@ -93,6 +114,7 @@ int main(int argc, char **argv, char **envp)
             data.tab_chunck = ft_split(data.str_chunk, '\n');//free
             ft_dollar(data.tab_chunck);
             ft_init_cmd(&data);
+            ft_exit_prog(&data);
             ft_exec_cmds(&data);
             ft_check_cat(&data);
             for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
@@ -100,6 +122,7 @@ int main(int argc, char **argv, char **envp)
                     printf("str_tab_args[%d][%d] = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
             ft_free(&data);
         }
+        tcsetattr(STDIN_FILENO, TCSANOW, &sig);
     }
     else
         printf("Error argument\n");
