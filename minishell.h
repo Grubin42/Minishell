@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/09 11:07:15 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/09 15:01:40 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,10 @@ int ft_cd(t_data *data, int i_cmd);
 void init_signals(struct termios *sig);
 int ft_builtins_with_pipe(t_data *data, int i);
 int ft_builtins_without_pipe(t_data *data);
+int ft_chdir(t_cd *cd, t_data *data, int i_cmd);
+int ft_go_up_the_path(t_cd *cd, t_data *data);
+void ft_free_cd(t_cd *cd);
+int ft_count_args(t_data *data, int i_cmd);
+int ft_change_envp(t_cd *cd, t_data *data);
+
 #endif

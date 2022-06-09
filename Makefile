@@ -6,14 +6,14 @@
 #    By: grubin <grubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 13:48:52 by grubin            #+#    #+#              #
-#    Updated: 2022/06/09 11:12:51 by grubin           ###   ########.fr        #
+#    Updated: 2022/06/09 14:51:30 by grubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3
+CFLAGS = -Wextra -Werror -Wall #-fsanitize=address -g3
 CFLAGS += -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib
 CFLAGS += -I ./libft/libft.h -lft -L ./libft
 CFLAGS += -o minishell
@@ -42,6 +42,7 @@ SRCS = 	main.c \
 		execve.c \
 		dollar_utils.c \
 		builtin_cd.c \
+		builtin_cd_utils.c \
 		builtin_env.c \
 		builtin_echo.c \
 		builtin_unset.c \

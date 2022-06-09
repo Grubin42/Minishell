@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jun  9 11:13:19 2022
+# Make data base, printed on Thu Jun  9 14:52:19 2022
 
 # Variables
 
@@ -25,29 +25,34 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
+ 
 CURDIR := /Users/grubin/Desktop/MiniS_perso
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 57)
+# makefile (from `Makefile', line 58)
 RM = rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"25fe6a3290ec415596628d4afc87a88c.fr","_translationsConfigFile":"/Users/grubin/Library/Application Support/Code/clp/25fe6a3290ec415596628d4afc87a88c.fr/tcf.json","_cacheRoot":"/Users/grubin/Library/Application Support/Code/clp/25fe6a3290ec415596628d4afc87a88c.fr","_resolvedLanguagePackCoreLocation":"/Users/grubin/Library/Application Support/Code/clp/25fe6a3290ec415596628d4afc87a88c.fr/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5","_corruptedFile":"/Users/grubin/Library/Application Support/Code/clp/25fe6a3290ec415596628d4afc87a88c.fr/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 19)
-CFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3 -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ./libft/libft.h -lft -L ./libft -o minishell
+CFLAGS = -Wextra -Werror -Wall  -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ./libft/libft.h -lft -L ./libft -o minishell
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # makefile (from `Makefile', line 30)
-SRCS = main.c utils_quote.c prompt_quote.c chunck.c init_data.c utils_chunck.c chunck_bis.c init_cmd.c chunk_quote.c exec_cmd.c dollar.c check_builtins.c execve.c dollar_utils.c builtin_cd.c builtin_env.c builtin_echo.c builtin_unset.c builtin_pwd.c builtin_exit.c builtin_export.c signal.c 
+SRCS = main.c utils_quote.c prompt_quote.c chunck.c init_data.c utils_chunck.c chunck_bis.c init_cmd.c chunk_quote.c exec_cmd.c dollar.c check_builtins.c execve.c dollar_utils.c builtin_cd.c builtin_cd_utils.c builtin_env.c builtin_echo.c builtin_unset.c builtin_pwd.c builtin_exit.c builtin_export.c signal.c 
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000c_n80032n_/T/vscode-ipc-1d257036-48f2-41e5-a30b-1593bdc2a328.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000c_n80032n_/T/vscode-ipc-2c05f35d-1e62-4a65-aade-5f6c0d7c3af1.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/grubin/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+# makefile (from `Makefile', line 75)
+@gcc -Wextra -Werror -Wall  -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ./libft/libft.h -lft -L ./libft -o minishell -fsanitize = address -g3 $(SRCS)
+# environment
+LaunchInstanceID = 7E051914-D93F-444B-9124-A67FB2BF2240
 # makefile (from `Makefile', line 21)
 AR = ar -rc
 # makefile (from `Makefile', line 23)
@@ -61,7 +66,7 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 26)
 LIBFT_DIR = ./libft
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.95ak9SyrT7/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QtgdGlG73Y/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -131,7 +136,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1168
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
 # makefile (from `Makefile', line 24)
 OBJS_DIR = ./objs
 # automatic
@@ -140,12 +145,16 @@ OBJS_DIR = ./objs
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18AAA:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -157,11 +166,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 36106
-# makefile (from `Makefile', line 74)
-@gcc -Wextra -Werror -Wall -fsanitize=address -g3 -I ~/.brew/Cellar/readline/8.1.2/include -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ./libft/libft.h -lft -L ./libft -o minishell -fsanitize = address -g3 $(SRCS)
+VSCODE_PID = 1745
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=2/114=2%
+# Load=77/1024=8%, Rehash=0, Collisions=2/117=2%
 
 # Pattern-specific Variable Values
 
@@ -169,10 +176,10 @@ VSCODE_PID = 36106
 
 # Directories
 
-# . (device 16777225, inode 1487468): 31 files, no impossibilities.
+# . (device 16777225, inode 1487468): 32 files, no impossibilities.
 # ./src: could not be stat'd.
 
-# 31 files, no impossibilities in 2 directories.
+# 32 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -198,7 +205,7 @@ all: minishell
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 11:12:51
+#  Last modified 2022-06-09 14:51:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -211,19 +218,19 @@ debug: libft/libft.a
 
 minishell: libft/libft.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-09 11:12:55
+#  Last modified 2022-06-09 14:51:37
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 63):
+#  commands to execute (from `Makefile', line 64):
 	$(CC) $(CFLAGS) $(SRCS)
 	
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-09 11:12:55
+#  Last modified 2022-06-09 14:51:36
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 65):
+#  commands to execute (from `Makefile', line 66):
 	@$(MAKE) -C $(LIBFT_DIR)
 	
 
@@ -231,7 +238,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 81):
+#  commands to execute (from `Makefile', line 82):
 	@$(RM) $(NAME)
 	
 
@@ -250,7 +257,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 77):
+#  commands to execute (from `Makefile', line 78):
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(RM) -r $(OBJS_DIR)
 	
@@ -268,6 +275,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun  9 11:13:19 2022
+# Finished Make data base on Thu Jun  9 14:52:19 2022
 
  
