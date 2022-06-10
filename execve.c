@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:13 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/02 16:32:25 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:22:06 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int ft_execve(t_data *data, int i_cmd)
     i = 0;
     while (data->tab_getenv[i])
     {
-        cmd_path = ft_strjoin(data->tab_getenv[i], "/");//free
-        cmd = ft_strjoin(cmd_path, data->tab_cmd[i_cmd].args[0]);//free
+        cmd_path = ft_join(data->tab_getenv[i], "/");//free
+        cmd = ft_join(cmd_path, data->tab_cmd[i_cmd].args[0]);//free
+        free(cmd_path);
         execve(cmd, &data->tab_cmd[i_cmd].args[0], NULL);
+        free(cmd);
         i++;
     }
     exit(0);

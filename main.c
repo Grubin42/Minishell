@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/09 10:31:08 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/10 08:54:05 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int main(int argc, char **argv, char **envp)
     }
     else
         printf("Error argument\n");
+    free(data.str_chunk);
     (void)argv;
     return 0; 
 }

@@ -1,6 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/grubin/Desktop/MiniS_perso'
-make: Nothing to be done for `all'.
- 
-make: Leaving directory `/Users/grubin/Desktop/MiniS_perso'
- 
