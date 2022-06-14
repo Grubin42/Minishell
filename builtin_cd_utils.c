@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:48:39 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/09 15:00:21 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/14 10:05:28 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,25 @@ int ft_chdir(t_cd *cd, t_data *data, int i_cmd)
     return (0);
 }
 
-/*
+
 int ft_go_up_the_path(t_cd *cd, t_data *data)
 {
+    int i;
+    int count;
+    char **tab;
+
+    i = 0;
+    count = 0;
+    tab = ft_split(data->tab_cmd[0].args[1], '/');
+    cd->path = NULL;
+    while (tab[i])
+    {
+        if (strncmp(tab[i], "..\0", 3) == 0)
+            count++;
+        i++;
+    }
+    ft_free_tab(tab);
     
+    return (0);
 }
-*/
+

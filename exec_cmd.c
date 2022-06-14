@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/09 11:08:01 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/13 13:42:04 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ int ft_pipe(t_data *data)
 
 int ft_exec_cmds(t_data *data)
 {
+    char *tmp;
+
+    tmp = "|\0";
+    if (data->nbr_cmd == 2 && ft_strncmp(data->tab_chunck[0], tmp, 2) == 0)
+    {
+        printf("$: syntax error near unexpected token `|'\n");
+        return (0);
+    }
     if (data->nbr_cmd == 1)
         ft_builtins_without_pipe(data);
     else

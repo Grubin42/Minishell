@@ -1,20 +1,20 @@
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wextra -Werror -Wall #-g3 #-fsanitize=address
-CFLAGS += -Ilibft -I$(HOME)/.brew/Cellar/readline/8.1.2/include
-LDFLAGS += -Llibft -lreadline -L$(HOME)/.brew/Cellar/readline/8.1.2/lib
+
+export CFLAGS = -Wextra -Werror -Wall
+LDFLAGS = -Llibft -lreadline -L$(HOME)/.brew/Cellar/readline/8.1.2/lib
 
 AR = ar -rc
 
 SRCS_DIR = ./src
 OBJS_DIR = ./objs
-INC_DIR = .
+INC_DIRS = -Ilibft -I$(HOME)/.brew/Cellar/readline/8.1.2/include
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 
-SRCS =	main.c \
+SRCS =  main.c \
         utils_quote.c \
         prompt_quote.c \
         chunck.c \
@@ -36,6 +36,7 @@ SRCS =	main.c \
         builtin_pwd.c \
         builtin_exit.c \
         builtin_export.c \
+        builtin_export_utils.c \
         signal.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
@@ -49,28 +50,28 @@ RM = rm -f
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(INC_DIRS) -o $(NAME) $(OBJS) $(LIBFT) $(LDFLAGS)
 
 $(LIBFT) :
-	@$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
+	mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $^
+	$(CC) $(CFLAGS) $(INC_DIRS) -o $@ -c $^
 
 debug: CFLAGS += -g3 -fsanitize=address -fno-omit-frame-pointer
-debug: fclean $(NAME)
+debug: $(LIBFT) $(OBJS) $(NAME)
 
 valgrind: CFLAGS += -g3
-valgrind: fclean $(NAME)
+valgrind: $(LIBFT) $(OBJS) $(NAME)
 
 clean :
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(RM) -r $(OBJS_DIR)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) -r $(OBJS_DIR)
 
 fclean : clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 08:57:27 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/09 15:06:03 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/14 08:37:30 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int ft_init_cd_with_args(t_cd *cd, t_data *data, int i_cmd)
         cd->path = ft_strcpy(cd->path, cd->oldpwd);
         printf("%s\n", cd->oldpwd);
     }
-    //else if (ft_strncmp(data->tab_cmd[i_cmd].args[1], "..", 1) == 0)
-        //ft_go_up_the_path(cd, data);
+    else if (ft_strncmp(data->tab_cmd[i_cmd].args[1], "..", 1) == 0)
+        ft_go_up_the_path(cd, data);
     else
     {
         cd->path = ft_strcpy(cd->path, cd->pwd);

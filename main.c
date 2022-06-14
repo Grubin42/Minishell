@@ -6,11 +6,25 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/10 08:54:05 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/14 10:47:26 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void ft_free_tab(char  **tab)
+{
+    int i;
+
+    i = 0;
+    while(tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}
+
 void ft_print_tab(char **tab)
 {
     int i = 0;
@@ -52,25 +66,17 @@ int ft_check_cat(t_data *data)
     int i;
     char *str;
 
-    i = 0;
-    data->nbr_cat = 0;
-    if (!data->tab_cmd[0].args[0])
+    i = data->nbr_cmd;
+    if (!data->tab_cmd[0].args[0] || data->nbr_cmd == 1)
         return (0);
-    if (ft_strncmp(data->tab_cmd[0].args[0], "cat\0", 4) == 0)
+    while (i != 0)
     {
-        data->nbr_cat = 1;
-        while (ft_strncmp(data->tab_cmd[i].args[0], "cat\0", 4) == 0
-                && ft_strncmp(data->tab_cmd[i + 1].args[0], "cat\0", 4) == 0)
-        {
-            data->nbr_cat++;
-            i++;
-        }
-        while (data->nbr_cat != 0)
+        if (ft_strncmp(data->tab_cmd[i - 1].args[0], "cat\0", 4) == 0)
         {
             str = readline("");
             free(str);
-            data->nbr_cat--;
         }
+        i--;
     }
     return (0);
 }
@@ -94,12 +100,30 @@ int ft_exit_prog(t_data *data)
     return (0);
 }
 
+int ft_init_envp(t_data *data, char **envp)
+{
+    int i;
+
+    i = 0;
+    while (envp[i])
+        i++;
+    data->envp = ft_calloc(i + 1, sizeof(char*));
+    i = 0;
+    while (envp[i])
+    {
+        data->envp[i] = ft_strdup(envp[i]);
+        i++;
+    }
+    data->envp[i] = NULL;
+    return (0);
+}
+
 int main(int argc, char **argv, char **envp) 
 {
     t_data data;
     struct termios sig;
     
-    data.envp = envp;
+    ft_init_envp(&data, envp);
     init_signals(&sig);
     if (argc == 1)
     {

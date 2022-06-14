@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/09 15:01:40 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/14 10:52:30 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <termios.h>
+
+typedef struct s_export
+{
+    int val_min;
+    char **tab;
+}               t_export;
 
 typedef struct  s_cd
 {
@@ -55,6 +61,7 @@ typedef struct  s_cmd
 
 typedef struct s_data
 {
+    int     flag;
     int     nbr_cat;
     int     nbr_cmd;
     int     i_chunk;
@@ -117,5 +124,15 @@ int ft_go_up_the_path(t_cd *cd, t_data *data);
 void ft_free_cd(t_cd *cd);
 int ft_count_args(t_data *data, int i_cmd);
 int ft_change_envp(t_cd *cd, t_data *data);
+
+int ft_export(t_data *data);
+void ft_free_tab(char **tab);
+void ft_print_tab_export(t_export *export);
+int ft_error_export(t_data *data);
+int ft_export_new_env(t_export *export, t_data *data);
+int ft_similar(t_data *data, int i_arg);
+int ft_creat_new_env(t_export *export, t_data *data, int i_arg);
+void ft_tri_env(t_data *data, t_export *export);
+int ft_init_struct_export(t_export *export, t_data *data);
 
 #endif
