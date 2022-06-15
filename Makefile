@@ -25,9 +25,10 @@ SRCS =  main.c \
         chunk_quote.c \
         exec_cmd.c \
         dollar.c \
-        check_builtins.c \
         execve.c \
+        signal.c \
         dollar_utils.c \
+        check_builtins.c \
         builtin_cd.c \
         builtin_cd_utils.c \
         builtin_env.c \
@@ -37,7 +38,6 @@ SRCS =  main.c \
         builtin_exit.c \
         builtin_export.c \
         builtin_export_utils.c \
-        signal.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 

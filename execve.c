@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:13 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/10 09:22:06 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 11:46:04 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,17 @@ int ft_execve(t_data *data, int i_cmd)
     i = 0;
     while (data->tab_getenv[i])
     {
+        //faire copie data.tab_cmd
+        //utiliser la copie dans le reste de la fonction
+        //free tab
         cmd_path = ft_join(data->tab_getenv[i], "/");//free
         cmd = ft_join(cmd_path, data->tab_cmd[i_cmd].args[0]);//free
         free(cmd_path);
-        execve(cmd, &data->tab_cmd[i_cmd].args[0], NULL);
+        if (execve(cmd, &data->tab_cmd[i_cmd].args[0], NULL) == - 1)
+        {
+            printf("$ %s: command not found\n", data->tab_cmd[i_cmd].args[0]);
+            break ;
+        }
         free(cmd);
         i++;
     }

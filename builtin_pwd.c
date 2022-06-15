@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:22:45 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/03 14:22:55 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/15 09:02:29 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_pwd(void)
+void ft_pwd(t_data *data)
 {
-    int i;
-
-    i = 0;
-    printf("%s\n", getenv("PWD"));
+    printf("%s\n", ft_getenv(data, "PWD"));
 }

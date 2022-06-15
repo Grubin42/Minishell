@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/14 10:52:30 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 10:57:48 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 #include <signal.h>
 #include <termios.h>
 
+typedef struct s_unset
+{
+    char **tab;
+}               t_unset;
+
 typedef struct s_export
 {
     int val_min;
@@ -32,6 +37,9 @@ typedef struct s_export
 
 typedef struct  s_cd
 {
+    int  count_point;
+    int  count_slash;
+    char **tab;
     char *pwd;
     char *oldpwd;
     char *path;
@@ -81,7 +89,7 @@ void ft_print_tab(char **tab);
 int ft_check_first_quote(char *str);
 int ft_exec_cmd(t_data *data, int i_cmd);
 int ft_access_path(t_data *data, int i_cmd, int i_arg);
-int ft_del_consec_quote(t_data *data);
+//int ft_del_consec_quote(t_data *data);
 int ft_count_quote(char *str);
 //char *ft_check_new_dquote(char *new_str);
 //char *ft_check_new_quote(char *new_str);
@@ -111,11 +119,12 @@ int ft_change_env(t_env *env, int i);
 int ft_exec_cmds(t_data *data);
 int ft_execve(t_data *data, int i_cmd);
 int ft_env(t_data *data);
-void ft_pwd(void);
+void ft_pwd(t_data *data);
 int ft_echo(t_data *data , int i_cmd);
-void ft_exit(void);
+int ft_exit_prog(t_data *data);
 int ft_init_env(t_env *env);
 int ft_cd(t_data *data, int i_cmd);
+int ft_unset(t_data *data);
 void init_signals(struct termios *sig);
 int ft_builtins_with_pipe(t_data *data, int i);
 int ft_builtins_without_pipe(t_data *data);
@@ -134,5 +143,8 @@ int ft_similar(t_data *data, int i_arg);
 int ft_creat_new_env(t_export *export, t_data *data, int i_arg);
 void ft_tri_env(t_data *data, t_export *export);
 int ft_init_struct_export(t_export *export, t_data *data);
+int ft_count_egale(char *str);
+int ft_del_quote(t_data *data);
+char *ft_getenv(t_data *data, char *str);
 
 #endif

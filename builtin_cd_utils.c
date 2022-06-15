@@ -6,11 +6,12 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 12:48:39 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/14 10:05:28 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 08:57:37 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 int ft_count_args(t_data *data, int i_cmd)
 {
     int i_args;
@@ -26,12 +27,6 @@ int ft_count_args(t_data *data, int i_cmd)
     return (count);
 }
 
-void    ft_free_cd(t_cd *cd)
-{
-    free(cd->oldpwd);
-    free(cd->path);
-    free(cd->pwd);
-}
 
 int ft_chdir(t_cd *cd, t_data *data, int i_cmd)
 {
@@ -48,25 +43,65 @@ int ft_chdir(t_cd *cd, t_data *data, int i_cmd)
     return (0);
 }
 
+int ft_count_double_point(t_cd *cd, t_data *data)
+{
+    int i;
+    char **tab;
+    
+    i = 0;
+    cd->tab = NULL;
+    cd->count_point = 0;
+    cd->count_slash = 0;
+    tab = ft_split(data->tab_cmd[0].args[1], '/');
+    while (tab[i])
+    {
+        if (strncmp(tab[i], "..\0", 3) == 0)
+            cd->count_point++;
+        i++;
+    }
+    ft_free_tab(tab);
+    i = 0;
+    while (cd->pwd[i])
+    {
+        if (cd->pwd[i] == '/')
+            cd->count_slash++;
+        i++;
+    }
+    return (0);
+}
+
+int ft_split_slash(t_cd *cd)
+{
+    if (cd->count_point < cd->count_slash)
+        cd->tab = ft_split(cd->pwd, '/');
+    else
+    {
+        cd->path = ft_strcpy(cd->path, "/");
+        return (0);
+    }
+    return (0);
+}
 
 int ft_go_up_the_path(t_cd *cd, t_data *data)
 {
     int i;
-    int count;
-    char **tab;
+    int j;
 
     i = 0;
-    count = 0;
-    tab = ft_split(data->tab_cmd[0].args[1], '/');
-    cd->path = NULL;
-    while (tab[i])
-    {
-        if (strncmp(tab[i], "..\0", 3) == 0)
-            count++;
+    j = 0;
+    ft_count_double_point(cd, data);
+    ft_split_slash(cd);
+    while (cd->tab[i])
         i++;
+    cd->path = ft_strjoin(cd->path, "/");
+    while (i - cd->count_point != 0)
+    {
+        cd->path = ft_strjoin(cd->path, cd->tab[j]);
+        if (i - cd->count_point != 1)
+            cd->path = ft_strjoin(cd->path, "/");
+        i--;
+        j++;
     }
-    ft_free_tab(tab);
-    
+    ft_free_tab(cd->tab);
     return (0);
 }
-

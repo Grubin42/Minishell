@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:21:52 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/08 11:14:56 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 10:38:13 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int ft_echo(t_data *data , int i_cmd)
         i_arg++;
     }
     printf("\n");
-    exit (0);
+    //exit (0);
+    return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/13 14:44:21 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 10:06:32 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int ft_builtins_with_pipe(t_data *data, int i)
     if (ft_strncmp(data->tab_cmd[i].args[0], "echo\0", 5) == 0)
         ft_echo(data, i);
     else if (ft_strncmp(data->tab_cmd[i].args[0], "pwd\0", 4) == 0)
-       ft_pwd();
+       ft_pwd(data);
     else if (ft_envcmp(data, i) == 0 && ft_count_args(data, i) == 1)
         printf("%s\n", data->tab_cmd[i].args[0]);
     else
@@ -69,11 +69,11 @@ int ft_builtins_without_pipe(t_data *data)
     else if (ft_strncmp(data->tab_cmd[0].args[0], "cd\0", 3) == 0)
         ft_cd(data, 0);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "pwd\0", 4) == 0)
-       ft_pwd();
+       ft_pwd(data);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "export\0", 7) == 0)
         ft_export(data);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "unset\0", 6) == 0)
-        printf("machin =%s\n", data->tab_cmd[0].args[0]);
+        ft_unset(data);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "env\0", 4) == 0)
         ft_env(data);
     else if (ft_envcmp(data, 0) == 0 && ft_count_args(data, 0) == 1)
