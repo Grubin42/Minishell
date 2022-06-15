@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/15 10:57:48 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 14:25:48 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data
     char    **envp;
     char    **tab_getenv;
     char    **tab_chunck;
+    char    **tab_cpy;
     t_cmd   *tab_cmd;
 }   t_data;
 

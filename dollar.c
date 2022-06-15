@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/13 09:20:00 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 13:25:59 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int ft_include_env(t_env *env)
         else if ((env->str_tmp[i] == '$' && env->str_tmp[i + 1] == '"')
             || (env->str_tmp[i] == '$' && env->str_tmp[i + 1] == '\0'))
             i = ft_no_change(env, i);
-        else if (env->str_tmp[i] == '$')
+        else if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] == '?')
             i = ft_change_env(env, i);
         else
             i++;

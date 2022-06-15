@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/15 09:03:55 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:51:26 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ int main(int argc, char **argv, char **envp)
             data.tab_chunck = ft_split(data.str_chunk, '\n');//free
             ft_dollar(data.tab_chunck);
             ft_init_cmd(&data);
-            ft_exit_prog(&data);
             ft_exec_cmds(&data);
             ft_check_cat(&data);
             for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)

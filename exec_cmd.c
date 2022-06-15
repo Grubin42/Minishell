@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/15 10:57:54 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:53:04 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int ft_exec_cmds(t_data *data)
     char *tmp;
 
     tmp = "|\0";
+    if (ft_exit_prog(data) == 1)
+        return (1);
     if (ft_del_quote(data) == 1)
         return (0);
     if (data->nbr_cmd == 2 && ft_strncmp(data->tab_chunck[0], tmp, 2) == 0)
