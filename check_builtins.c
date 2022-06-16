@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/15 10:06:32 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/16 13:53:40 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ int ft_builtins_with_pipe(t_data *data, int i)
         ft_echo(data, i);
     else if (ft_strncmp(data->tab_cmd[i].args[0], "pwd\0", 4) == 0)
        ft_pwd(data);
+    else if (ft_strncmp(data->tab_cmd[i].args[0], "export\0", 7) == 0)
+        ft_export(data);
     else if (ft_envcmp(data, i) == 0 && ft_count_args(data, i) == 1)
         printf("%s\n", data->tab_cmd[i].args[0]);
     else
         ft_execve(data, i);
-    return (0);
+    exit(0);
 }
 
 int ft_builtins_without_pipe(t_data *data)

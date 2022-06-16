@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/15 15:51:26 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/16 11:58:59 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char *ft_getenv(t_data *data, char *str)
     int i;
 
     i = 0;
+    if (str[0] == '\0')
+        return (new_str = ft_strdup(""));
     while (data->envp[i])
     {
         if (ft_strncmp(data->envp[i], str, ft_strlen(str)) == 0)
@@ -143,7 +145,7 @@ int main(int argc, char **argv, char **envp)
             add_history(data.str_rl);
             ft_create_str_chunck(&data);
             data.tab_chunck = ft_split(data.str_chunk, '\n');//free
-            ft_dollar(data.tab_chunck);
+            ft_dollar(&data, data.tab_chunck);
             ft_init_cmd(&data);
             ft_exec_cmds(&data);
             ft_check_cat(&data);

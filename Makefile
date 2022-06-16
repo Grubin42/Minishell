@@ -2,7 +2,7 @@ NAME = minishell
 
 CC = gcc
 
-export CFLAGS = -Wextra -Werror -Wall -g3
+export CFLAGS = -Wextra -Werror -Wall
 LDFLAGS = -Llibft -lreadline -L$(HOME)/.brew/Cellar/readline/8.1.2/lib
 
 AR = ar -rc

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:13 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/15 14:45:00 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/16 13:59:42 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int ft_execve(t_data *data, int i_cmd)
     char    *cmd;
     char    *cmd_path;
     
-    data->str_getenv = getenv("PATH");
+    data->str_getenv = ft_getenv(data, "PATH");
     data->tab_getenv = ft_split(data->str_getenv, ':');//free
     i = 0;
     while (data->tab_getenv[i])
@@ -66,14 +66,12 @@ int ft_execve(t_data *data, int i_cmd)
         cmd_path = ft_join(data->tab_getenv[i], "/");//free
         cmd = ft_join(cmd_path, data->tab_cpy[0]);//free
         free(cmd_path);
-        if (execve(cmd, &data->tab_cpy[0], NULL) == - 1)
-        {
-            printf("$ %s: command not found\n", data->tab_cpy[0]);
-            break ;
-        }
+        if (access(cmd, X_OK) == 0)
+            execve(cmd, &data->tab_cpy[0], NULL);
         ft_free_tab(data->tab_cpy);
         free(cmd);
         i++;
     }
+    printf("$: %s: command not found\n", data->tab_cmd[i_cmd].args[0]);
     exit(0);
 }

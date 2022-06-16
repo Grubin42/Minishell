@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/15 14:25:48 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/16 11:43:22 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ int ft_if_pipe(t_data *data);
 int ft_if_sq(t_data *data);
 int ft_if_dq(t_data *data);
 int ft_pipe(t_data *data);
-int ft_dollar(char **tab);
+int ft_dollar(t_data *data, char **tab);
 int ft_check_builtins(t_data *data, int i);
 int ft_cmds_with_pipe(t_data *data);
-int ft_check_dollar(t_env *env, int i);
+int ft_check_dollar(t_data *data, t_env *env, int i);
 int ft_check_quote(t_env *env, int i);
-int ft_change_env(t_env *env, int i);
+int ft_change_env(t_data *data, t_env *env, int i);
 int ft_exec_cmds(t_data *data);
 int ft_execve(t_data *data, int i_cmd);
 int ft_env(t_data *data);

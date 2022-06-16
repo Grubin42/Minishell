@@ -50,10 +50,13 @@ int ft_remove_quote(char *str, int i, char quote)
     while (str[i])
     {
         if (str[i] == quote)
+        {
             ft_memmove(&str[i], &str[i + 1], len - i);
+            return (i);
+        }
         i++;
     }
-    return (0);
+    return (i);
 }
 
 int ft_delete_quote(char *str)
@@ -64,12 +67,13 @@ int ft_delete_quote(char *str)
     while (str[i])
     {
         if (str[i] == '\'')
-            ft_remove_quote(str, i, '\'');
+            i = ft_remove_quote(str, i, '\'');
         else if (str[i] == '"')
-            ft_remove_quote(str, i, '"');
-        i++;
+            i = ft_remove_quote(str, i, '"');
+        else
+            i++;
     }
-    return (0);
+    return (i);
 }
 
 int ft_del_quote(t_data *data)
@@ -78,10 +82,10 @@ int ft_del_quote(t_data *data)
     int i_arg;
 
     i_cmd = 0;
-    while (data->tab_cmd[i_cmd].args)
+    while (i_cmd < data->nbr_cmd)
     {
         i_arg = 0;
-        while (data->tab_cmd[i_cmd].args[i_arg])
+        while (i_arg < ft_count_args(data, i_cmd))
         {
             if (ft_count_quote(data->tab_cmd[i_cmd].args[i_arg]) % 2 != 0)
             {

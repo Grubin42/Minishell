@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 13:39:43 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/03 13:57:43 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:49:59 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@ int ft_check_quote(t_env *env, int i)
     return (i);
 }
 
-int ft_check_dollar(t_env *env, int i)
+int ft_check_dollar(t_data *data, t_env *env, int i)
 {
     while (env->str_tmp[i])
     {
         if (env->str_tmp[i] == '$' && env->str_tmp[i + 1] != ' ')
-            i = ft_change_env(env, i);
+        {
+            i = ft_change_env(data, env, i);
+        }
         else
+        {
             i++;
+        }
     } 
     return (i);
 }
