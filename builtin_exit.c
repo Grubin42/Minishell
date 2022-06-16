@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:22:22 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/16 11:15:45 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/16 14:40:16 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int ft_exit_prog(t_data *data)
 
     if (!data->tab_cmd[0].args[0])
         return (0);
-    //ft_del_quote(data);
     while(data->tab_cmd[i_cmd].args)
     {
         if (ft_strncmp(data->tab_cmd[0].args[0], "exit\0", 5) == 0)

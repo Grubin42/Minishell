@@ -15,8 +15,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 
 SRCS =  main.c \
+        main_utils.c \
         utils_quote.c \
-        prompt_quote.c \
         chunck.c \
         init_data.c \
         utils_chunck.c \
@@ -38,6 +38,7 @@ SRCS =  main.c \
         builtin_exit.c \
         builtin_export.c \
         builtin_export_utils.c \
+        free.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
