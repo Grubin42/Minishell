@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/16 15:34:29 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/17 11:53:14 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct  s_cmd
 
 typedef struct s_data
 {
-    int     flag;
     int     nbr_cat;
     int     nbr_cmd;
     int     i_chunk;

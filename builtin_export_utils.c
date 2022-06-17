@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:39:54 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/14 10:52:17 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/17 11:45:14 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int ft_error_export(t_data *data)
     while (data->tab_cmd[0].args[i])
     {
         if (data->tab_cmd[0].args[i][0] == '=')
-        {
             printf("export: `%s': not a valide identifier\n", data->tab_cmd[0].args[i]);
-            return (1);
-        }
         i++;
     }
     return (0);

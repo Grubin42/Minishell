@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:29:51 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/16 15:31:03 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/17 11:25:51 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ int ft_check_cat(t_data *data)
     i = data->nbr_cmd;
     if (!data->tab_cmd[0].args[0] || data->nbr_cmd == 1)
         return (0);
-    while (i != 0)
+    while (i > 0)
     {
         if (ft_strncmp(data->tab_cmd[i - 1].args[0], "cat\0", 4) == 0)
         {
             str = readline("");
             free(str);
+            i--;
         }
         i--;
     }

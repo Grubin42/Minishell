@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:35:46 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/16 13:48:24 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/17 12:06:32 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,20 @@ int ft_creat_new_env(t_export *export, t_data *data, int i_arg)
 
     i = 0;
     j = 0;
-    data->flag = 0;
-    if (export->tab != NULL)
-        data->flag = 1;
     ft_init_struct_export(export, data);
     while (data->envp[i])
     {
-        export->tab[j] = ft_strdup(data->envp[i]);
-        j++;
-        i++;
+        if (data->envp[i][0] != '=')
+        {
+            export->tab[j] = ft_strdup(data->envp[i]);
+            j++;
+            i++;
+        }
+        else
+            i++;
     }
-    export->tab[i] = ft_strdup(data->tab_cmd[0].args[i_arg]);
+    if (data->tab_cmd[0].args[i_arg][0] != '=')
+        export->tab[i] = ft_strdup(data->tab_cmd[0].args[i_arg]);
     ft_free_tab(data->envp);
     ft_realloc_envp(data, export);
     return (0);
@@ -91,8 +94,7 @@ int ft_export(t_data *data)
     t_export export;
 
     export.tab = NULL;
-    if (ft_error_export(data) == 1)
-        return (0);
+    ft_error_export(data);
     if (ft_count_args(data, 0) == 1)
     {
         ft_init_struct_export(&export, data);
