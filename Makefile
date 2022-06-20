@@ -39,6 +39,11 @@ SRCS =  main.c \
         builtin_export.c \
         builtin_export_utils.c \
         free.c \
+        check_in.c \
+        stdin_out.c \
+        utils_redir.c \
+        exec_redir.c \
+        check_file_out.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 

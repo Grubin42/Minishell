@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/17 11:53:14 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:21:12 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <termios.h>
+#include <fcntl.h>
+#include <dirent.h>
+
+typedef struct  s_fd
+{
+    int red;
+    int fd_in;
+    int fd_out;
+    int heredocs;
+    int append;
+    char    **tab_in;
+}               t_fd;
 
 typedef struct s_unset
 {
@@ -111,10 +123,10 @@ int ft_check_dollar(t_data *data, t_env *env, int i);
 int ft_check_quote(t_env *env, int i);
 int ft_change_env(t_data *data, t_env *env, int i);
 int ft_exec_cmds(t_data *data);
-int ft_execve(t_data *data, int i_cmd);
+int ft_execve(t_data *data);
 int ft_env(t_data *data);
 void ft_pwd(t_data *data);
-int ft_echo(t_data *data , int i_cmd);
+int ft_echo(t_data *data);
 int ft_exit_prog(t_data *data);
 int ft_init_env(t_env *env);
 int ft_cd(t_data *data, int i_cmd);
@@ -140,5 +152,15 @@ int ft_init_struct_export(t_export *export, t_data *data);
 int ft_count_egale(char *str);
 int ft_del_quote(t_data *data);
 char *ft_getenv(t_data *data, char *str);
+int    exec_red(t_data *data, t_fd *files, int i);
+int check_file_out(char *file_name, t_fd *files, int append);
+int check_file_in(char *file_name, t_fd *files);
+char **cpy_tab_heredocs(char **tab, int nb_lines, char *input);
+void    check_heredoc(char *key_word, t_fd *files);
+int ft_check_fd_in(char **tab, t_fd *files);
+char	*copy_new_line(char *new_line);
+void ft_tabcpy(t_data *data, int i_cmd, int i_arg);
+void    close_pipes(int nb_pipe, int fd[nb_pipe][2]);
+int error_red(char **cmd, t_fd *files, int i);
 
 #endif
