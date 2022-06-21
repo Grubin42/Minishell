@@ -6,29 +6,36 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:21:52 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/20 15:22:16 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:44:25 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_echo(t_data *data)
+int ft_echo(char **tab)
 {
-    int i_arg;
+    int i;
 
-    i_arg = 1;
-    while(data->tab_cpy[i_arg])
-    {
-        if (ft_strncmp(data->tab_cpy[i_arg], "-n\0", 3) == 0)
-            i_arg++;
-        printf("%s", data->tab_cpy[i_arg]);
-        if (data->tab_cpy[i_arg + 1])
-          printf(" ");  
-        i_arg++;
-    }
-    if (ft_strncmp(data->tab_cpy[1], "-n\0", 3) == 0)
-        return (0);
-    else
+    i = 1;
+    if (!tab[i])
         printf("\n");
+    else if (ft_strncmp(tab[i], "-n\0", 3) == 0 && !tab[i + 1])
+        return (0);
+    else if (ft_strncmp(tab[i], "-n\0", 3) == 0 && tab[i + 1])
+    {
+        while (tab[++i])
+        {
+            printf("%s", tab[i]);
+            if (tab[i + 1])
+                printf(" ");
+        }
+    }
+    else
+    {
+        i = i - 1;
+        while (tab[++i])
+            printf("%s ", tab[i]);
+        printf("\n");
+    }
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:22:41 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/20 11:30:09 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:56:24 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int check_file_in(char *file_name, t_fd *files)
     files->fd_in = open(file_name, O_RDONLY);
     if (files->fd_in == -1)
     {
-        printf("bash: %s: no such file or directory\n", file_name);
+        printf("$ %s: no such file or directory\n", file_name);
         return (0);
     }
     if (files->heredocs == 1)
@@ -64,7 +64,7 @@ void    check_heredoc(char *key_word, t_fd *files)
     if (files->heredocs == 1)
         ft_free_tab(files->tab_in);
     input = readline("> ");
-    while ((ft_strncmp(input, key_word, ft_strlen(key_word)) != 0))
+    while ((ft_strncmp(input, key_word, ft_strlen(input)) != 0))
     {
         if (freed == 1)
         {

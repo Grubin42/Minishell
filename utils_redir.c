@@ -6,11 +6,20 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:27:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/20 14:26:39 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:43:01 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void    ft_init_red(t_fd *files)
+{
+    files->append = 0;
+    files->fd_in = -1;
+    files->fd_out = -1;
+    files->heredocs = 0;
+    files->red = 0;
+}
 
 char	*copy_new_line(char *new_line)
 {

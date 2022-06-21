@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:22:22 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/16 14:40:16 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 13:55:40 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,18 @@ int ft_exit(t_data *data, int i_cmd)
     }
     return (0);
 }
-
+/*
 int ft_exit_prog(t_data *data)
 {
     int i_cmd;
 
     i_cmd = 0;
+    
+    return (0);
+}
 
-    if (!data->tab_cmd[0].args[0])
+*/
+ /*   if (!data->tab_cmd[0].args[0])
         return (0);
     while(data->tab_cmd[i_cmd].args)
     {
@@ -71,6 +75,4 @@ int ft_exit_prog(t_data *data)
         }
         else
             i_cmd++;
-    }
-    return (0);
-}
+    }*/

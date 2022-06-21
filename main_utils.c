@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:29:51 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/17 11:25:51 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:42:12 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 char *ft_getenv(t_data *data, char *str)
 {
     char *new_str;
+    char *tmp;
     int i;
 
     i = 0;
+    tmp = getenv(str);
+    if (tmp == NULL)
+    {
+        free(tmp);
+        return (NULL);
+    }
     if (str[0] == '\0')
         return (new_str = ft_strdup(""));
     while (data->envp[i])

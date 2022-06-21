@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:25:42 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/20 11:26:02 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:43:53 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int check_file_out(char *file_name, t_fd *files, int append)
     if (files->fd_out == -1)
     {
         if (!file_name)
-            printf("bash: syntax error near unexpected token `newline'\n");
+            printf("$ syntax error near unexpected token `newline'\n");
         else
             printf("error while creating file %s\n", file_name);
         return(0);

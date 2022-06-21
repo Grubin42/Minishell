@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/20 15:20:58 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:26:40 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int ft_builtins_with_pipe(t_data *data, int i)
     if (data->tab_cpy[0] == NULL)
         return (0);
     if (ft_strncmp(data->tab_cpy[0], "echo\0", 5) == 0)
-        ft_echo(data);
+        ft_echo(data->tab_cpy);
     else if (ft_strncmp(data->tab_cpy[0], "cd\0", 3) == 0)
         ft_cd(data, 0);
     else if (ft_strncmp(data->tab_cpy[0], "pwd\0", 4) == 0)
@@ -99,31 +99,24 @@ int ft_builtins_with_pipe(t_data *data, int i)
     else if (ft_strncmp(data->tab_cpy[0], "unset\0", 6) == 0)
         ft_unset(data);
     else if (ft_strncmp(data->tab_cpy[0], "env\0", 4) == 0)
-        ft_env(data);
+        ft_env(data, data->tab_cpy);
     else if (ft_envcmp(data, i) == 0 && ft_count_args(data, i) == 1)
         printf("%s\n", data->tab_cpy[0]);
     else
-        ft_execve(data);
+        return (0);
     exit(0);
 }
 
-
-
-
-
-
-
-
-
-
-
-/*
 int ft_builtins_without_pipe(t_data *data)
 {
+    if (ft_del_quote(data->tab_cmd[0].args) == 1)
+        return (0);
     if (data->tab_cmd[0].args[0] == NULL)
         return (0);
-    if (ft_strncmp(data->tab_cmd[0].args[0], "echo\0", 5) == 0)
-        ft_echo(data, 0);
+    if (ft_strncmp(data->tab_cmd[0].args[0], "exit\0", 5) == 0)
+        ft_exit(data, 0);
+    else if (ft_strncmp(data->tab_cmd[0].args[0], "echo\0", 5) == 0)
+        ft_echo(data->tab_cmd[0].args);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "cd\0", 3) == 0)
         ft_cd(data, 0);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "pwd\0", 4) == 0)
@@ -133,10 +126,10 @@ int ft_builtins_without_pipe(t_data *data)
     else if (ft_strncmp(data->tab_cmd[0].args[0], "unset\0", 6) == 0)
         ft_unset(data);
     else if (ft_strncmp(data->tab_cmd[0].args[0], "env\0", 4) == 0)
-        ft_env(data);
+        ft_env(data, data->tab_cmd[0].args);
     else if (ft_envcmp(data, 0) == 0 && ft_count_args(data, 0) == 1)
-        printf("%s\n", data->tab_cmd[0].args[0]);
+         printf("%s\n", data->tab_cmd[0].args[0]);
     else
         ft_pipe(data);
     return (0);
-}*/
+}

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/16 12:13:12 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:44:14 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_change_env(t_data *data, t_env *env, int i)
     ft_init_env(env);
     env->result = ft_get_env(data, env);
     i = 0;
-    while ((size_t)i < ft_strlen(env->str_tmp))
+    while ((size_t)i < ft_strlen(env->str_tmp) && env->result)
     {
         if (env->str_tmp[i] == '$' && env->count < 1)
         {

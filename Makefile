@@ -44,6 +44,7 @@ SRCS =  main.c \
         utils_redir.c \
         exec_redir.c \
         check_file_out.c \
+        error_redir.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 

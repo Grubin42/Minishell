@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:37:12 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/16 15:37:32 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:02:24 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,22 @@ int ft_check_first_quote(char *str)
 
 int ft_count_quote(char *str)
 {
-    int i;
-    int sq;
-    int dq;
-
-    i = 0;
-    sq = 0;
-    dq = 0;
-    while (str[i])
+    while (*str)
     {
-        if (str[i] == 39)
-            sq++;
-        else if (str[i] == 34)
-            dq++;
-        i++;
-    }
-    if (ft_check_first_quote(str) == 1)
-        return (sq);
-    else if (ft_check_first_quote(str) == 2)
-        return (dq);
+        if (*str == 39)
+        {
+            str = ft_strchr(str + 1, *str);
+            if (str == NULL)
+                return (1);
+        }
+        else if (*str == 34)
+        {
+            str = ft_strchr(str + 1, *str);
+            if (str == NULL)
+                return (1);
+        }
+        str++;
+    } 
     return (0);
 }
 
@@ -89,27 +86,21 @@ int ft_delete_quote(char *str)
     return (i);
 }
 
-int ft_del_quote(t_data *data)
+int ft_del_quote(char **tab)
 {
-    int i_cmd;
-    int i_arg;
+    int i;
 
-    i_cmd = 0;
-    while (i_cmd < data->nbr_cmd)
+    i = 0;
+    while (tab[i])
     {
-        i_arg = 0;
-        while (i_arg < ft_count_args(data, i_cmd))
+        if (ft_count_quote(tab[i]) % 2 != 0)
         {
-            if (ft_count_quote(data->tab_cmd[i_cmd].args[i_arg]) % 2 != 0)
-            {
-                printf("Error quote.\n");
-                return (1);
-            }
-            else
-                ft_delete_quote(data->tab_cmd[i_cmd].args[i_arg]);
-            i_arg++;
+            printf("Error quote.\n");
+            return (1);
         }
-        i_cmd++;
+        else
+            ft_delete_quote(tab[i]);
+        i++;
     }
     return (0);
 }

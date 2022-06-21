@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/20 15:14:09 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:23:16 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int main(int argc, char **argv, char **envp)
             ft_dollar(&data, data.tab_chunck);
             ft_init_cmd(&data);
             ft_exec_cmds(&data);
-            ft_check_cat(&data);
+            //ft_check_cat(&data);
             //for(int i_cmd = 0; data.tab_cmd[i_cmd].args; i_cmd++)
                 //for(int i_arg = 0; data.tab_cmd[i_cmd].args[i_arg]; i_arg++)
-                   // printf("str_tab_args[%d][%d] = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
+                    //printf("str_tab_args[%d][%d] = %s\n",i_cmd, i_arg, data.tab_cmd[i_cmd].args[i_arg]);
             ft_free(&data);
         }
         tcsetattr(STDIN_FILENO, TCSANOW, &sig);

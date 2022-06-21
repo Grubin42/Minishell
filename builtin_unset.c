@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 08:54:11 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/17 15:10:41 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:17:13 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,23 @@ int ft_new_tab_unset(t_data *data, char *arg, t_unset *unset)
 {
     int i;
     int j;
-
+    char *tmp;
+    
     i = 0;
     j = 0;
+    tmp = ft_calloc(ft_strlen(arg) + 2, sizeof(char));
+    tmp = ft_strcpy(tmp, arg);
+    tmp = ft_strjoin(tmp, "=");
     while(data->envp[i])
     {
-        if(ft_strncmp(arg, data->envp[i], ft_strlen(arg)) != 0)
+        if(ft_strncmp(data->envp[i], tmp, ft_strlen(tmp)) != 0)
         {
             unset->tab[j] = ft_strdup(data->envp[i]);
             j++;
         }
         i++;
     }
+    free(tmp);
     ft_free_tab(data->envp);
     ft_realloc_envp_unset(data, unset);
     return (0);

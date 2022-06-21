@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:13 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/20 15:14:25 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:50:55 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int ft_execve(t_data *data)
     char    *cmd;
     char    *cmd_path;
     
+    if (ft_del_quote(data->tab_cpy) == 1)
+        return (0);
+    if (access(data->tab_cpy[0], X_OK) == 0)
+         execve(data->tab_cpy[0],data->tab_cpy, NULL);
+    ft_builtins_with_pipe(data, 0);
     data->str_getenv = ft_getenv(data, "PATH");
     data->tab_getenv = ft_split(data->str_getenv, ':');//free
     i = 0;

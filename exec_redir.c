@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:34:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/20 15:10:16 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 11:07:26 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ void    close_fd(t_fd *files)
         close(files->fd_out); 
 }
 
-int    exec_red(t_data *data, t_fd *files, int i)
+void ft_pid_one(int pid_1, int fd[2], t_fd *files)
 {
     int j;
-    int pid_1;
-    int pid_2;
-    int fd[2];
-    
+
     j = 0;
-    pipe(fd);
-    pid_1 = fork();
     if (pid_1 == 0)
     {
         dup2(fd[1], STDOUT_FILENO);
@@ -47,6 +42,26 @@ int    exec_red(t_data *data, t_fd *files, int i)
         }
         exit(0);
     }
+}
+
+void ft_wait(int pid_1, int pid_2, int fd[2], t_fd *files)
+{
+    close(fd[0]);
+    close(fd[1]);
+    close_fd(files);
+    waitpid(pid_1, NULL, 0);
+    waitpid(pid_2,  NULL, 0);
+}
+
+int    exec_red(t_data *data, t_fd *files)
+{
+    int pid_1;
+    int pid_2;
+    int fd[2];
+    
+    pipe(fd);
+    pid_1 = fork();
+    ft_pid_one(pid_1, fd, files);
     pid_2 = fork();
     if (pid_2 == 0)
     {
@@ -58,12 +73,8 @@ int    exec_red(t_data *data, t_fd *files, int i)
             dup2(files->fd_out, STDOUT_FILENO);
         close(fd[0]);
         close(fd[1]);
-        ft_builtins_with_pipe(data, i);
+        ft_execve(data);
     }
-    close(fd[0]);
-    close(fd[1]);
-    close_fd(files);
-    waitpid(pid_1, NULL, 0);
-    waitpid(pid_2,  NULL, 0);
+    ft_wait(pid_1, pid_2, fd, files);
     return (0);    
 }
