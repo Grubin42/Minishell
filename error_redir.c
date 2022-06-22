@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 14:45:51 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/21 14:54:19 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:25:00 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int ft_count_redir(char *str)
     if (count > 2)
     {
         printf("Error redirection\n");
-        return (1);
+        return (return_sig = 1);
     }
-    return (0);
+    return (return_sig = 0);
 }
 
 int ft_check_redir_not_egale(char **tab)
@@ -46,7 +46,7 @@ int ft_check_redir_not_egale(char **tab)
         || (tab[i][0] == '>' && !tab[i + 1]))
         {
             printf("Error redirection 2\n");
-            return (1);
+            return (return_sig = 1);
         }
         else if ((tab[i][0] == '>' && tab[i + 1][0] == '<')
         || (tab[i][0] == '<' && tab[i + 1][0] == '>')
@@ -54,11 +54,11 @@ int ft_check_redir_not_egale(char **tab)
         || (tab[i][0] == '>' && tab[i + 1][0] == '>' ))
         {
             printf("Error redirection 2\n");
-            return (1);
+            return (return_sig = 1);
         }
         i++;
     }
-    return (0);
+    return (return_sig = 0);
 }
 
 int ft_check_error_redir(t_data *data)
@@ -83,5 +83,5 @@ int ft_check_error_redir(t_data *data)
         }
         i++;
     }
-    return (0);
+    return (return_sig = 0);
 }

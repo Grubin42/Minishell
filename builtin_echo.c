@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:21:52 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/21 14:44:25 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/22 09:10:11 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int ft_echo(char **tab)
             printf("%s ", tab[i]);
         printf("\n");
     }
-    return (0);
+    return (return_sig = 0);
 }

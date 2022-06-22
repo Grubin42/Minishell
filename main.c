@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/21 14:23:16 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:41:49 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int main(int argc, char **argv, char **envp) 
 {
     t_data data;
     struct termios sig;
     
+    return_sig = 0;
     ft_init_envp(&data, envp);
     init_signals(&sig);
     if (argc == 1)
@@ -45,5 +47,5 @@ int main(int argc, char **argv, char **envp)
         printf("Error argument\n");
     free(data.str_chunk);
     (void)argv;
-    return 0; 
+    return (return_sig); 
 }

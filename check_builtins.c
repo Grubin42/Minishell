@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_builtins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/21 15:26:40 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:38:28 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int ft_builtins_with_pipe(t_data *data, int i)
     else if (ft_envcmp(data, i) == 0 && ft_count_args(data, i) == 1)
         printf("%s\n", data->tab_cpy[0]);
     else
-        return (0);
+        return (return_sig = 0);
     exit(0);
 }
 

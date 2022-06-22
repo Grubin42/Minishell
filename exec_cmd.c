@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/21 16:50:22 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:12:00 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int ft_pipe(t_data *data)
     int     i;
     int     fd[data->nbr_cmd-1][2];
     int     pid;
+    int     status;
    
     i = 0;
     while (i < data->nbr_cmd-1)
@@ -63,7 +64,8 @@ int ft_pipe(t_data *data)
         i++;
     }
     close_pipes(data->nbr_cmd-1, fd);
-    waitpid(pid, NULL, 0);
+    waitpid(pid, &status, 0);
+    return_sig = WEXITSTATUS(status);
     return (0);
 }
 

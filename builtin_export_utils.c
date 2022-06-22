@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:39:54 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/17 11:45:14 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:31:15 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int ft_error_export(t_data *data)
             printf("export: `%s': not a valide identifier\n", data->tab_cmd[0].args[i]);
         i++;
     }
-    return (0);
+    return (return_sig = 1);
 }
 
 void ft_tri_env(t_data *data, t_export *export)

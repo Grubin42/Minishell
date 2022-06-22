@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:27:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/20 16:43:01 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:22:37 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ int error_red(char **cmd, t_fd *files, int i_cmd)
         if (cmd[i_cmd][0] == '<' || cmd[i_cmd][0] == '>')
         {
             files->red = 1;
-            /*if (cmd[i + 1] == cmd[i] && cmd[i + 2] == cmd[i])
-            {
-                printf("syntax error near unexpected token `%c'\n", cmd[i + 2]);
-                return (0);
-            }
-            if ((cmd[i] == '<' && cmd[i + 1] == '>') || (cmd[i] == '>' && cmd[i + 1] == '<'))
-            {
-                
-            }*/
         }
         i_cmd++;
     }

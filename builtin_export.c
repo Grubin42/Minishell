@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:35:46 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/17 12:06:32 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:31:41 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ int ft_export(t_data *data)
     }
     else if (ft_count_args(data, 0) > 1)
         ft_export_new_env(&export, data);
-    return (0);
+    return (return_sig = 0);
 }

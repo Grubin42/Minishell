@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:22:22 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/21 13:55:40 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:28:24 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int ft_exit(t_data *data, int i_cmd)
     if (ft_count_args(data, i_cmd) > 2)
     {
         printf("exit: too many arguments\n");
-        return (1);
+        return (return_sig = 1);
     }
     else if (ft_count_args(data, i_cmd) == 2)
     {
@@ -44,7 +44,7 @@ int ft_exit(t_data *data, int i_cmd)
     {
         exit(0);
     }
-    return (0);
+    return (return_sig = 1);
 }
 /*
 int ft_exit_prog(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/21 15:44:14 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/22 09:11:07 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,20 @@ int ft_change_env(t_data *data, t_env *env, int i)
 
 int ft_no_change(t_env *env, int i)
 {
+    char *str;
+
     env->tmp = ft_calloc(2048, sizeof(char));
+    if (strncmp(env->str_tmp, "$?\0", 3) == 0)
+    {
+        str = ft_itoa(return_sig);
+        ft_strcpy(env->str_tmp, str);
+    }
     while (env->str_tmp[i])
     {
         env->tmp[i] = env->str_tmp[i];
         i++;
     }
+    free(str);
     return (i);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 08:54:11 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/21 16:17:13 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/21 17:33:30 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int ft_unset(t_data *data)
         else
         {
             printf("$: unset: `%s': not a valid identifier\n", data->tab_cmd[0].args[i]);
+            return_sig = 1;
             i++;
         }
     }
