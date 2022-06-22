@@ -6,13 +6,13 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:22:45 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/15 09:02:29 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/22 10:18:53 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_pwd(t_data *data)
+void	ft_pwd(t_data *data)
 {
-    printf("%s\n", ft_getenv(data, "PWD"));
+	printf("%s\n", ft_getenv(data, "PWD"));
 }

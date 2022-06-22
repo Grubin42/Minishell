@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschreye <jschreye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:27:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/21 17:22:37 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:30:05 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_init_red(t_fd *files)
+void	ft_init_red(t_fd *files)
 {
-    files->append = 0;
-    files->fd_in = -1;
-    files->fd_out = -1;
-    files->heredocs = 0;
-    files->red = 0;
+	files->append = 0;
+	files->fd_in = -1;
+	files->fd_out = -1;
+	files->heredocs = 0;
+	files->red = 0;
+	files->status = 0;
 }
 
 char	*copy_new_line(char *new_line)
@@ -37,28 +38,28 @@ char	*copy_new_line(char *new_line)
 	return (stock);
 }
 
-void    close_pipes(int nb_pipe, int fd[nb_pipe][2])
+void	close_pipes(int nb_pipe, int fd[nb_pipe][2])
 {
-    int j;
-    
-    j = 0;
-    while (j < nb_pipe)
-    {
-        close(fd[j][0]);
-        close(fd[j][1]);
-        j++;
-    }
+	int	j;
+
+	j = 0;
+	while (j < nb_pipe)
+	{
+		close(fd[j][0]);
+		close(fd[j][1]);
+		j++;
+	}
 }
 
-int error_red(char **cmd, t_fd *files, int i_cmd)
+int	error_red(char **cmd, t_fd *files, int i_cmd)
 {
-    while (cmd[i_cmd])
-    {
-        if (cmd[i_cmd][0] == '<' || cmd[i_cmd][0] == '>')
-        {
-            files->red = 1;
-        }
-        i_cmd++;
-    }
-    return (1);
+	while (cmd[i_cmd])
+	{
+		if (cmd[i_cmd][0] == '<' || cmd[i_cmd][0] == '>')
+		{
+			files->red = 1;
+		}
+		i_cmd++;
+	}
+	return (1);
 }

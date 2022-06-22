@@ -13,7 +13,6 @@ INC_DIRS = -Ilibft -I$(HOME)/.brew/Cellar/readline/8.1.2/include
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-
 SRCS =  main.c \
         main_utils.c \
         utils_quote.c \
@@ -45,6 +44,7 @@ SRCS =  main.c \
         exec_redir.c \
         check_file_out.c \
         error_redir.c \
+        exec_cmd_utils.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
