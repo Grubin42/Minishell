@@ -6,11 +6,25 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:31:59 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 13:54:30 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:38:22 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int ft_wait_pid(t_data *data, t_fd *files)
+{
+	int i;
+	
+	i = 0;
+	while (i < data->nbr_cmd)
+	{
+		waitpid(files->pid[i], &files->status, 0);
+		g_return_sig = WEXITSTATUS(files->status);
+		i++;
+	}
+	return (0);
+}
 
 int	ft_init_fd(t_data *data, t_fd *files, int i)
 {

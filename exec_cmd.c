@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:05:28 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:38:17 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	ft_pipe(t_data *data, t_fd *files)
 	while (++i <= data->nbr_cmd - 1)
 	{
 		ft_init_fd(data, files, i);
-		files->pid = fork();
-		if (files->pid == 0)
+		files->pid[i] = fork();
+		if (files->pid[i] == 0)
 		{
 			ft_exec_child(data, files->fd, i, files);
 			ft_free_tab(data->tab_cpy);
@@ -48,8 +48,7 @@ int	ft_pipe(t_data *data, t_fd *files)
 		ft_free_tab(data->tab_cpy);
 	}
 	close_pipes(data->nbr_cmd - 1, files->fd);
-	waitpid(files->pid, &files->status, 0);
-	g_return_sig = WEXITSTATUS(files->status);
+	ft_wait_pid(data, files);
 	return (0);
 }
 
