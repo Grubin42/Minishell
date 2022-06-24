@@ -6,16 +6,16 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:31:59 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:38:22 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:49:58 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_wait_pid(t_data *data, t_fd *files)
+int	ft_wait_pid(t_data *data, t_fd *files)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < data->nbr_cmd)
 	{
