@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:27:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 15:30:05 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:43:08 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_init_red(t_fd *files)
 	files->fd_out = -1;
 	files->heredocs = 0;
 	files->red = 0;
-	files->status = 0;
+	files->tab_in = NULL;
 }
 
 char	*copy_new_line(char *new_line)
@@ -38,7 +38,7 @@ char	*copy_new_line(char *new_line)
 	return (stock);
 }
 
-void	close_pipes(int nb_pipe, int fd[nb_pipe][2])
+void	close_pipes(int nb_pipe, int (*fd)[2])
 {
 	int	j;
 

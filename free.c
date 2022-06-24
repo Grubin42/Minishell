@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:26:03 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 14:43:14 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:01:13 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ void	ft_free_tab(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	if (tab)
 	{
-		free(tab[i]);
-		i++;
+		while (tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
 	}
-	free(tab);
+	tab = NULL;
 }
 
 void	ft_free_cd(t_cd *cd)

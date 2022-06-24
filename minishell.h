@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 15:34:09 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/23 16:15:18 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,19 @@
 
 int	g_return_sig;
 
+typedef struct s_err
+{
+    int     i;
+    int     j;
+    int     k;
+    char    *cmd;
+    char    *cmd_path;
+}               t_err;
+
 typedef struct s_fd
 {
+	int		pid;
+	int		fd[100][2];
 	int		red;
 	int		fd_in;
 	int		fd_out;
@@ -118,7 +129,7 @@ int		ft_init_cmd(t_data *data);
 int		ft_if_pipe(t_data *data);
 int		ft_if_sq(t_data *data);
 int		ft_if_dq(t_data *data);
-int		ft_pipe(t_data *data);
+int	ft_pipe(t_data *data, t_fd *files);
 int		ft_dollar(t_data *data, char **tab);
 int		ft_check_builtins(t_data *data, int i);
 int		ft_cmds_with_pipe(t_data *data);
@@ -129,14 +140,14 @@ int		ft_exec_cmds(t_data *data);
 int		ft_execve(t_data *data);
 int		ft_env(t_data *data, char **tab);
 void	ft_pwd(t_data *data);
-int		ft_echo(char **tab);
+int	ft_echo(char **tab);
 int		ft_exit(t_data *data, int i_cmd);
 int		ft_init_env(t_env *env);
 int		ft_cd(t_data *data, int i_cmd);
 int		ft_unset(t_data *data);
 void	init_signals(struct termios *sig);
 int		ft_builtins_with_pipe(t_data *data, int i);
-int		ft_builtins_without_pipe(t_data *data);
+int	ft_builtins_without_pipe(t_data *data, t_fd *files);
 int		ft_chdir(t_cd *cd, t_data *data, int i_cmd);
 int		ft_go_up_the_path(t_cd *cd, t_data *data);
 void	ft_free_cd(t_cd *cd);
@@ -163,10 +174,11 @@ void	check_heredoc(char *key_word, t_fd *files);
 int		ft_check_fd_in(char **tab, t_fd *files);
 char	*copy_new_line(char *new_line);
 void	ft_tabcpy(t_data *data, int i_cmd, int i_arg);
-void	close_pipes(int nb_pipe, int fd[nb_pipe][2]);
+void	close_pipes(int nb_pipe, int (*fd)[2]);
 int		error_red(char **cmd, t_fd *files, int i);
 void	ft_init_red(t_fd *files);
 int		ft_check_error_redir(t_data *data);
 int		ft_init_fd(t_data *data, t_fd *files, int i);
+int ft_check_valid_command(t_data *data, t_err *err);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 14:45:51 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 15:31:41 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/23 16:28:16 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_check_redir_not_egale(char **tab)
 			|| (tab[i][0] == '<' && tab[i + 1][0] == '<' )
 			|| (tab[i][0] == '>' && tab[i + 1][0] == '>' ))
 		{
-			printf("Error redirection 2\n");
+			printf("Error redirection\n");
 			return (g_return_sig = 1);
 		}
 		i++;

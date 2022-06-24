@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:34:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 14:37:30 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:31:13 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_pid_one(int pid_1, int fd[2], t_fd *files)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		if (files->heredocs == 1)
+		if (files->heredocs == 1 && files->tab_in)
 		{
 			while (files->tab_in[j])
 			{

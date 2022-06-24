@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:22:41 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 11:12:40 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 09:43:15 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,37 +52,50 @@ char	**cpy_tab_heredocs(char **tab, int nb_lines, char *input)
 	return (copied_tab);
 }
 
-void	check_heredoc(char *key_word, t_fd *files)
+void    check_heredoc(char *key_word, t_fd *files)
 {
-	char		*input;
-	int			nb_lines;
-	char		**tmp;
-	static int	freed = 1;
+    char    *input;
+    int     nb_lines;
+    char    **tmp;
+    static int  freed;
 
-	nb_lines = 1;
-	if (files->heredocs == 1)
-		ft_free_tab(files->tab_in);
-	input = readline("> ");
-	while ((ft_strncmp(input, key_word, ft_strlen(input)) != 0))
-	{
-		if (freed == 1)
-		{
-			files->tab_in = malloc(sizeof(char *) * 2);
-			files->tab_in[0] = copy_new_line(input);
-			files->tab_in[1] = 0;
-			freed = 0;
-		}
-		else
-		{
-			tmp = cpy_tab_heredocs(files->tab_in, nb_lines, input);
-			ft_free_tab(files->tab_in);
-			files->tab_in = cpy_tab_heredocs(tmp, nb_lines, NULL);
-			ft_free_tab(tmp);
-		}
-		free(input);
-		input = readline("> ");
-		nb_lines++;
-	}
-	freed = 1;
-	files->heredocs = 1;
+    nb_lines = 1;
+    freed = 1;
+    if (files->heredocs == 1)
+        ft_free_tab(files->tab_in);
+    input = readline("> ");
+    if(input[0] == '\0')
+    {
+        free(input);
+        input = ft_strdup(" \0");
+    }
+    while ((ft_strncmp(input, key_word, ft_strlen(input)) != 0))
+    {
+        if (freed == 1)
+        {
+            files->tab_in = malloc(sizeof(char *) * 2);
+            files->tab_in[0] = copy_new_line(input);
+            free(input);
+            files->tab_in[1] = 0;
+            freed = 0;
+        }
+        else
+        {
+            tmp = cpy_tab_heredocs(files->tab_in, nb_lines, input);
+            ft_free_tab(files->tab_in);
+            free(input);
+            files->tab_in = cpy_tab_heredocs(tmp, nb_lines, NULL);
+            ft_free_tab(tmp);
+        }
+        input = readline("> ");
+        if(input[0] == '\0')
+        {
+            free(input);
+            input = ft_strdup(" \0");
+        }
+        nb_lines++;
+    }
+    free(input);
+    freed = 1;
+    files->heredocs = 1;
 }

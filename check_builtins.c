@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/22 15:31:41 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:38:48 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	ft_builtins_with_pipe(t_data *data, int i)
 		printf("%s\n", data->tab_cpy[0]);
 	else
 		return (g_return_sig = 0);
-	exit(0);
+	return (0);
 }
 
-int	ft_builtins_without_pipe(t_data *data)
+int	ft_builtins_without_pipe(t_data *data, t_fd *files)
 {
 	if (ft_del_quote(data->tab_cmd[0].args) == 1)
 		return (0);
@@ -92,6 +92,6 @@ int	ft_builtins_without_pipe(t_data *data)
 	else if (ft_envcmp(data, 0) == 0 && ft_count_args(data, 0) == 1)
 		printf("%s\n", data->tab_cmd[0].args[0]);
 	else
-		ft_pipe(data);
+		ft_pipe(data, files);
 	return (0);
 }
