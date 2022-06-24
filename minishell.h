@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/23 16:15:18 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:24:59 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # include <dirent.h>
 
 int	g_return_sig;
+
+typedef struct s_her
+{
+    char    *input;
+    int     nb_lines;
+    char    **tmp; 
+}               t_her;
 
 typedef struct s_err
 {
@@ -170,7 +177,7 @@ int		exec_red(t_data *data, t_fd *files);
 int		check_file_out(char *file_name, t_fd *files, int append);
 int		check_file_in(char *file_name, t_fd *files);
 char	**cpy_tab_heredocs(char **tab, int nb_lines, char *input);
-void	check_heredoc(char *key_word, t_fd *files);
+int	check_heredoc(char *key_word, t_fd *files);
 int		ft_check_fd_in(char **tab, t_fd *files);
 char	*copy_new_line(char *new_line);
 void	ft_tabcpy(t_data *data, int i_cmd, int i_arg);

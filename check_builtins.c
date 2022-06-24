@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/24 10:38:48 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 11:39:05 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_builtins_with_pipe(t_data *data, int i)
 		printf("%s\n", data->tab_cpy[0]);
 	else
 		return (g_return_sig = 0);
-	return (0);
+	exit (0);
 }
 
 int	ft_builtins_without_pipe(t_data *data, t_fd *files)
