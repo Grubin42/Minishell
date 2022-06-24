@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:38:17 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:47:42 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_exec_child(t_data *data, int (*fd)[2], int i, t_fd *files)
 
 int	ft_pipe(t_data *data, t_fd *files)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < data->nbr_cmd - 1)
@@ -69,10 +69,10 @@ int	ft_check_redir(t_data *data)
 	return (0);
 }
 
-int ft_check_pipe_error(char **tab)
+int	ft_check_pipe_error(char **tab)
 {
-	int count;
-	char *tmp;
+	int		count;
+	char	*tmp;
 
 	tmp = "|\0";
 	count = 0;
@@ -100,7 +100,7 @@ int	ft_exec_cmds(t_data *data)
 	{
 		ft_init_fd(data, &files, 0);
 		if (files.value == 0)
-        	exec_red(data, &files);
+			exec_red(data, &files);
 	}
 	else if (data->nbr_cmd == 1 && ft_check_redir(data) == 0)
 		ft_builtins_without_pipe(data, &files);

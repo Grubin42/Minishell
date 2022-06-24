@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 08:53:30 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:46:32 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:27:10 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ char	*ft_join(char *s1, char *s2);
 void	*ft_realloc(void *ptr, size_t size);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strcpy(char *dst, const char *src);
-int    ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 11:37:58 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:46:14 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:26:29 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int    ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    unsigned int    idx;
-    int                val;
+	unsigned int	idx;
+	int				val;
 
-    idx = 0;
-    val = 0;
-    while (!val && (s2[idx] != '\0' || s1[idx] != '\0'))
-    {
-        val = (unsigned char)s1[idx] - (unsigned char)s2[idx];
-        idx++;
-    }
-    return (val);
+	idx = 0;
+	val = 0;
+	while (!val && (s2[idx] != '\0' || s1[idx] != '\0'))
+	{
+		val = (unsigned char)s1[idx] - (unsigned char)s2[idx];
+		idx++;
+	}
+	return (val);
 }

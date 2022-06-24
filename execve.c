@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:39:13 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/24 10:33:12 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:19:25 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_execve(t_data *data)
 	int		i;
 	char	*cmd;
 	char	*cmd_path;
-	
+
 	if (ft_del_quote(data->tab_cpy) == 1)
 		return (0);
 	if (access(data->tab_cpy[0], X_OK) == 0)

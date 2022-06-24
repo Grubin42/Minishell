@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 12:04:15 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:17:57 by jschreye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	ft_dollar(t_data *data, char **tab)
 	while (tab[i])
 	{
 		if (ft_count_quote(tab[i]) == 1)
-			break;
+			break ;
 		if (ft_strchr(tab[i], '$'))
 		{
 			env.str_tmp = ft_strdup(tab[i]);
