@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 11:23:15 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:36:13 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ int ft_check_pipe_error(char **tab)
 int	ft_exec_cmds(t_data *data)
 {
 	t_fd	files;
-	char	*tmp;
 
-	tmp = "|\0";
 	if (ft_check_error_redir(data) == 1)
 		return (1);
 	if (data->nbr_cmd > 1 && ft_check_pipe_error(data->tab_chunck) == 1)//possible faire fonction complete

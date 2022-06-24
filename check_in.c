@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:22:41 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:31:59 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:46:48 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int check_heredoc(char *key_word, t_fd *files)
     ft_check_input(&her);
     if (!her.input)
         return (0);
-    while ((ft_strncmp(her.input, key_word, ft_strlen(her.input)) != 0))
+    while ((ft_strcmp(her.input, key_word) != 0))
     {
         freed = ft_creat_tab_in(files, freed, &her);
         ft_check_input(&her);

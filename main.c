@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:05:12 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/24 11:59:01 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:41:16 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char **argv, char **envp)
 	else
 		printf("Error argument\n");
 	free(data.str_chunk);
+	ft_free_tab(data.envp);
 	(void)argv;
 	return (g_return_sig);
 }
