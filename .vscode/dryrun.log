@@ -1,0 +1,82 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/grubin/Desktop/final_minishell'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./libft
+ 
+make[1]: Entering directory `/Users/grubin/Desktop/final_minishell/libft'
+gcc -Wextra -Werror -Wall -o ft_strcpy.o -c ft_strcpy.c
+gcc -Wextra -Werror -Wall -o ft_strcat.o -c ft_strcat.c
+gcc -Wextra -Werror -Wall -o ft_realloc.o -c ft_realloc.c
+gcc -Wextra -Werror -Wall -o ft_join.o -c ft_join.c
+gcc -Wextra -Werror -Wall -o ft_atoi.o -c ft_atoi.c
+gcc -Wextra -Werror -Wall -o ft_bzero.o -c ft_bzero.c
+gcc -Wextra -Werror -Wall -o ft_calloc.o -c ft_calloc.c
+gcc -Wextra -Werror -Wall -o ft_isalnum.o -c ft_isalnum.c
+gcc -Wextra -Werror -Wall -o ft_isalpha.o -c ft_isalpha.c
+gcc -Wextra -Werror -Wall -o ft_isascii.o -c ft_isascii.c
+gcc -Wextra -Werror -Wall -o ft_isdigit.o -c ft_isdigit.c
+gcc -Wextra -Werror -Wall -o ft_isprint.o -c ft_isprint.c
+gcc -Wextra -Werror -Wall -o ft_itoa.o -c ft_itoa.c
+gcc -Wextra -Werror -Wall -o ft_memchr.o -c ft_memchr.c
+gcc -Wextra -Werror -Wall -o ft_memcmp.o -c ft_memcmp.c
+gcc -Wextra -Werror -Wall -o ft_memcpy.o -c ft_memcpy.c
+gcc -Wextra -Werror -Wall -o ft_memmove.o -c ft_memmove.c
+gcc -Wextra -Werror -Wall -o ft_memset.o -c ft_memset.c
+gcc -Wextra -Werror -Wall -o ft_putchar_fd.o -c ft_putchar_fd.c
+gcc -Wextra -Werror -Wall -o ft_putendl_fd.o -c ft_putendl_fd.c
+gcc -Wextra -Werror -Wall -o ft_putnbr_fd.o -c ft_putnbr_fd.c
+gcc -Wextra -Werror -Wall -o ft_putstr_fd.o -c ft_putstr_fd.c
+gcc -Wextra -Werror -Wall -o ft_split.o -c ft_split.c
+gcc -Wextra -Werror -Wall -o ft_strchr.o -c ft_strchr.c
+gcc -Wextra -Werror -Wall -o ft_strdup.o -c ft_strdup.c
+gcc -Wextra -Werror -Wall -o ft_striteri.o -c ft_striteri.c
+gcc -Wextra -Werror -Wall -o ft_strjoin.o -c ft_strjoin.c
+gcc -Wextra -Werror -Wall -o ft_strlcat.o -c ft_strlcat.c
+gcc -Wextra -Werror -Wall -o ft_strlcpy.o -c ft_strlcpy.c
+gcc -Wextra -Werror -Wall -o ft_strlen.o -c ft_strlen.c
+gcc -Wextra -Werror -Wall -o ft_strmapi.o -c ft_strmapi.c
+gcc -Wextra -Werror -Wall -o ft_strncmp.o -c ft_strncmp.c
+gcc -Wextra -Werror -Wall -o ft_strnstr.o -c ft_strnstr.c
+gcc -Wextra -Werror -Wall -o ft_strrchr.o -c ft_strrchr.c
+gcc -Wextra -Werror -Wall -o ft_strtrim.o -c ft_strtrim.c
+gcc -Wextra -Werror -Wall -o ft_substr.o -c ft_substr.c
+gcc -Wextra -Werror -Wall -o ft_tolower.o -c ft_tolower.c
+gcc -Wextra -Werror -Wall -o ft_toupper.o -c ft_toupper.c
+ar rsc libft.a ft_strcpy.o ft_strcat.o ft_realloc.o ft_join.o ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
+make[1]: Leaving directory `/Users/grubin/Desktop/final_minishell/libft'
+mkdir -p ./objs
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/main.o -c main.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/main_utils.o -c main_utils.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/utils_quote.o -c utils_quote.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/chunck.o -c chunck.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/init_data.o -c init_data.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/utils_chunck.o -c utils_chunck.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/chunck_bis.o -c chunck_bis.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/init_cmd.o -c init_cmd.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/chunk_quote.o -c chunk_quote.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/exec_cmd.o -c exec_cmd.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/dollar.o -c dollar.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/execve.o -c execve.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/signal.o -c signal.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/dollar_utils.o -c dollar_utils.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/check_builtins.o -c check_builtins.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_cd.o -c builtin_cd.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_cd_utils.o -c builtin_cd_utils.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_env.o -c builtin_env.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_echo.o -c builtin_echo.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_unset.o -c builtin_unset.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_pwd.o -c builtin_pwd.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_exit.o -c builtin_exit.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_export.o -c builtin_export.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/builtin_export_utils.o -c builtin_export_utils.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/free.o -c free.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/check_in.o -c check_in.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/stdin_out.o -c stdin_out.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/utils_redir.o -c utils_redir.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/exec_redir.o -c exec_redir.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/check_file_out.o -c check_file_out.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/error_redir.o -c error_redir.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/exec_cmd_utils.o -c exec_cmd_utils.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o objs/check_cmd.o -c check_cmd.c
+gcc -Wextra -Werror -Wall -Ilibft -I/Users/grubin/.brew/Cellar/readline/8.1.2/include -o minishell ./objs/main.o ./objs/main_utils.o ./objs/utils_quote.o ./objs/chunck.o ./objs/init_data.o ./objs/utils_chunck.o ./objs/chunck_bis.o ./objs/init_cmd.o ./objs/chunk_quote.o ./objs/exec_cmd.o ./objs/dollar.o ./objs/execve.o ./objs/signal.o ./objs/dollar_utils.o ./objs/check_builtins.o ./objs/builtin_cd.o ./objs/builtin_cd_utils.o ./objs/builtin_env.o ./objs/builtin_echo.o ./objs/builtin_unset.o ./objs/builtin_pwd.o ./objs/builtin_exit.o ./objs/builtin_export.o ./objs/builtin_export_utils.o ./objs/free.o ./objs/check_in.o ./objs/stdin_out.o ./objs/utils_redir.o ./objs/exec_redir.o ./objs/check_file_out.o ./objs/error_redir.o ./objs/exec_cmd_utils.o ./objs/check_cmd.o ./libft/libft.a -Llibft -lreadline -L/Users/grubin/.brew/Cellar/readline/8.1.2/lib
+make: Leaving directory `/Users/grubin/Desktop/final_minishell'
+ 

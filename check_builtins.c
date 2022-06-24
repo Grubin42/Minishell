@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:59 by jschreye          #+#    #+#             */
-/*   Updated: 2022/06/24 11:39:05 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 16:25:03 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	ft_envcmp(t_data *data, int i_cmd)
 	int		i;
 
 	i = 0;
-	tmp = ft_calloc(1024, sizeof(char));
 	while (data->envp[i])
 	{
+		tmp = ft_calloc(ft_strlen(data->envp[i]), sizeof(char));
 		ft_strcpy(tmp, &data->envp[i][ft_egal(data->envp[i])]);
 		if (ft_strncmp(data->tab_cmd[i_cmd].args[0],
 				tmp, ft_strlen(data->tab_cmd[i_cmd].args[0])) == 0)
@@ -39,10 +39,9 @@ int	ft_envcmp(t_data *data, int i_cmd)
 			return (0);
 		}
 		else
-			ft_bzero(tmp, ft_strlen(tmp));
+			free(tmp);
 		i++;
 	}
-	free(tmp);
 	return (1);
 }
 

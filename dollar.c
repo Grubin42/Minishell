@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:39:08 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:17:57 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/24 16:02:30 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int	ft_no_change(t_env *env, int i)
 	{
 		str = ft_itoa(g_return_sig);
 		ft_strcpy(env->str_tmp, str);
+		free(str);
 	}
 	while (env->str_tmp[i])
 	{
 		env->tmp[i] = env->str_tmp[i];
 		i++;
 	}
-	free(str);
 	return (i);
 }
 
