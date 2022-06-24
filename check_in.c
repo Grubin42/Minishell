@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:22:41 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:46:48 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:04:58 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,14 @@ char	**cpy_tab_heredocs(char **tab, int nb_lines, char *input)
 	return (copied_tab);
 }
 
-int ft_check_input(t_her *her)
+int ft_check_input(t_her *her, t_fd *files)
 {
     her->input = readline("> ");
     if (!her->input)
+    {
+        files->value = 1;
         return (0);
+    }
     if(her->input[0] == '\0')
     {
         free(her->input);
@@ -95,13 +98,13 @@ int check_heredoc(char *key_word, t_fd *files)
     freed = 1;
     if (files->heredocs == 1)
         ft_free_tab(files->tab_in);
-    ft_check_input(&her);
+    ft_check_input(&her, files);
     if (!her.input)
         return (0);
     while ((ft_strcmp(her.input, key_word) != 0))
     {
         freed = ft_creat_tab_in(files, freed, &her);
-        ft_check_input(&her);
+        ft_check_input(&her, files);
         if (!her.input)
             return (0);
         her.nb_lines++;

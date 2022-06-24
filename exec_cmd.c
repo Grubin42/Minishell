@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:36:13 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:05:28 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int	ft_exec_cmds(t_data *data)
 
 	if (ft_check_error_redir(data) == 1)
 		return (1);
-	if (data->nbr_cmd > 1 && ft_check_pipe_error(data->tab_chunck) == 1)//possible faire fonction complete
+	if (data->nbr_cmd > 1
+		&& ft_check_pipe_error(data->tab_chunck) == 1)
 	{
 		printf("$: syntax error near unexpected token `|'\n");
 		return (0);
@@ -99,7 +100,8 @@ int	ft_exec_cmds(t_data *data)
 	if (data->nbr_cmd == 1 && ft_check_redir(data) == 1)
 	{
 		ft_init_fd(data, &files, 0);
-        exec_red(data, &files);
+		if (files.value == 0)
+        	exec_red(data, &files);
 	}
 	else if (data->nbr_cmd == 1 && ft_check_redir(data) == 0)
 		ft_builtins_without_pipe(data, &files);

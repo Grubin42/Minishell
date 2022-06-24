@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 14:24:59 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:03:07 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_err
 
 typedef struct s_fd
 {
+	int	value;
 	int		pid;
 	int		fd[100][2];
 	int		red;

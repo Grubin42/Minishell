@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:27:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 10:43:08 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:03:31 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_init_red(t_fd *files)
 {
+	files->value = 0;
 	files->append = 0;
 	files->fd_in = -1;
 	files->fd_out = -1;
