@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:36:26 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 14:55:25 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/28 10:06:12 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	ft_init_struct(t_data *data)
 	data->str_chunk = ft_calloc(2048, sizeof(char));
 	data->i_chunk = 0;
 	data->tab_cmd = NULL;
+	data->tab_cpy = NULL;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 12:59:47 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:59:12 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/28 10:27:16 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ int	ft_error_exception(t_data *data, t_err *err)
 {
 	if (ft_strncmp(data->tab_cmd[err->i].args[0], "exit\0", 5) == 0
 		|| ft_strncmp(data->tab_cmd[err->i].args[0], "unset\0", 6) == 0
-		|| ft_strncmp(data->tab_cmd[err->i].args[0], "export\0", 6) == 0)
+		|| ft_strncmp(data->tab_cmd[err->i].args[0], "export\0", 6) == 0
+		|| access(data->tab_cmd[0].args[0], X_OK) == 0
+		|| ft_strncmp(data->tab_cmd[err->i].args[0], "<\0", 2) == 0
+		|| ft_strncmp(data->tab_cmd[err->i].args[0], ">\0", 2) == 0
+		|| ft_strncmp(data->tab_cmd[err->i].args[0], "<<\0", 3) == 0
+		|| ft_strncmp(data->tab_cmd[err->i].args[0], ">>\0", 3) == 0)
 		return (1);
 	return (0);
 }

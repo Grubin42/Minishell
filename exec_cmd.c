@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:05:17 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:47:42 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:53:53 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int	ft_pipe(t_data *data, t_fd *files)
 	i = -1;
 	while (++i <= data->nbr_cmd - 1)
 	{
+		if (data->tab_cpy)
+			ft_free_tab(data->tab_cpy);
 		ft_init_fd(data, files, i);
 		files->pid[i] = fork();
 		if (files->pid[i] == 0)
 		{
 			ft_exec_child(data, files->fd, i, files);
-			ft_free_tab(data->tab_cpy);
 			close_pipes(data->nbr_cmd - 1, files->fd);
 			exit(0);
 		}
-		ft_free_tab(data->tab_cpy);
 	}
 	close_pipes(data->nbr_cmd - 1, files->fd);
 	ft_wait_pid(data, files);
@@ -106,5 +106,6 @@ int	ft_exec_cmds(t_data *data)
 		ft_builtins_without_pipe(data, &files);
 	else
 		ft_pipe(data, &files);
+	ft_free_tab(data->tab_cpy);
 	return (0);
 }

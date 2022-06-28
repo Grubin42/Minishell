@@ -6,25 +6,42 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 10:18:18 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/22 15:31:41 by grubin           ###   ########.fr       */
+/*   Updated: 2022/06/28 09:34:24 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	ft_check_if_child(int new_val)
+{
+	static int	val;
+
+	val = 0;
+	if (new_val >= 0)
+		val = new_val;
+	return (val);
+}
+
 void	signal_handler(int signal)
 {
 	if (signal == SIGINT)
 	{
-		g_return_sig = 1;
-		rl_replace_line("", 0);
-		ft_putendl_fd("", 1);
-		rl_on_new_line();
-		rl_redisplay();
+		if (ft_check_if_child(-1) == 0)
+		{
+			rl_replace_line("", 0);
+			ft_putendl_fd("", 1);
+			rl_on_new_line();
+			rl_redisplay();
+			g_return_sig = 1;
+		}
+		else
+		{
+			g_return_sig = 128 + signal;
+		}
 	}
 	else if (signal == SIGQUIT)
 	{
-		g_return_sig = 0;
+		g_return_sig = 128 + signal;
 		rl_on_new_line();
 		rl_redisplay();
 	}

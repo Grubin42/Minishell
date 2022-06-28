@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:31:59 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:49:58 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:31:23 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	ft_wait_pid(t_data *data, t_fd *files)
 	i = 0;
 	while (i < data->nbr_cmd)
 	{
+		ft_check_if_child(files->pid[i]);
 		waitpid(files->pid[i], &files->status, 0);
-		g_return_sig = WEXITSTATUS(files->status);
+		if (WIFEXITED(files->status))
+			g_return_sig = WEXITSTATUS(files->status);
 		i++;
 	}
+	ft_check_if_child(0);
 	return (0);
 }
 

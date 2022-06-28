@@ -6,7 +6,7 @@
 /*   By: grubin <grubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:48:32 by grubin            #+#    #+#             */
-/*   Updated: 2022/06/24 15:44:46 by jschreye         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:32:30 by grubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,5 +189,6 @@ int		ft_check_error_redir(t_data *data);
 int		ft_init_fd(t_data *data, t_fd *files, int i);
 int		ft_check_valid_command(t_data *data, t_err *err);
 int		ft_wait_pid(t_data *data, t_fd *files);
+int		ft_check_if_child(int new_val);
 
 #endif
